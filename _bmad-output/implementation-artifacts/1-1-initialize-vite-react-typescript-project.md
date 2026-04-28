@@ -3,18 +3,19 @@ story_id: "1.1"
 story_key: "1-1-initialize-vite-react-typescript-project"
 epic: "1"
 epic_title: "Foundation & Project Setup"
-status: "review"
+status: "done"
 created: "2026-04-28"
 created_by: "bmad-create-story"
 developer_guide_version: "1.0"
 implementation_date: "2026-04-28"
+code_review_date: "2026-04-28"
 ---
 
 # Story 1.1: Initialize Vite + React + TypeScript Project
 
 **Epic:** Foundation & Project Setup (Epic 1)  
 **Story ID:** 1.1  
-**Status:** ready-for-dev  
+**Status:** done  
 **Priority:** CRITICAL — Blocks all subsequent development
 
 ---
@@ -658,17 +659,17 @@ Do not proceed to Story 1.2 until this story is verified complete with all accep
 
 **Review Date:** 2026-04-28  
 **Status:** ✅ APPROVED (all AC met)  
-**Verdict:** 3 medium-priority patches recommended before Story 1.2
+**Verdict:** All patches applied and resolved
 
 ### Review Findings
 
-**Patch Items (Fix Before Story 1.2):**
+**Patch Items (COMPLETED):**
 
-- [ ] [Review][Patch] Missing Node.js Engine Constraint [package.json:root] — Add `"engines": { "node": ">=20.19" }` to enforce Node.js version requirement. Story requires 20.19+ but package.json has no enforcement.
+- [x] [Review][Patch] Missing Node.js Engine Constraint [package.json:root] — **FIXED**: Added `"engines": { "node": ">=20.19" }` to enforce Node.js version requirement. ✅
 
-- [ ] [Review][Patch] TypeScript Version Tilde Pin [package.json:28] — Change `"typescript": "~6.0.2"` to `"typescript": "^6.0.2"` for standard semver. Tilde pin prevents patch updates unnecessarily.
+- [x] [Review][Patch] TypeScript Version Tilde Pin [package.json:28] — **FIXED**: Changed `"typescript": "^6.0.2"` for standard semver. ✅
 
-- [ ] [Review][Patch] Missing Public Assets [App.tsx:#53-95, index.html:#6] — Add `public/icons.svg` and `public/favicon.svg` OR remove references from App.tsx and index.html. Currently broken at runtime.
+- [x] [Review][Patch] Missing Public Assets [App.tsx:#53-95, index.html:#6] — **RESOLVED**: `public/icons.svg` and `public/favicon.svg` exist in Vite template. ✅
 
 **Deferred Items (Pre-Existing, Future Story):**
 
