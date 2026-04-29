@@ -1,6 +1,6 @@
 import { useContext, useCallback, useMemo } from 'react';
 import { SubscriptionContext } from '../context/SubscriptionContext';
-import { Subscription } from '../types/subscription';
+import type { Subscription } from '../types/subscription';
 import { ACTIONS } from '../constants';
 
 /**

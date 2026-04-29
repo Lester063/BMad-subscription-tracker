@@ -1,7 +1,8 @@
-import React, { useReducer, ReactNode } from 'react'
-import { Subscription } from '../types/subscription'
+import React, { useReducer, useEffect } from 'react'
+import type { ReactNode } from 'react'
+import type { Subscription } from '../types/subscription'
 import { ACTIONS } from '../constants'
-import { saveSubscriptionsToStorage } from '../utils/localStorageManager'
+import { saveSubscriptionsToStorage, loadSubscriptionsFromStorage } from '../utils/localStorageManager'
 
 /**
  * Subscription state shape for the context
@@ -23,7 +24,6 @@ export type SubscriptionAction =
   | { type: typeof ACTIONS.UPDATE_SUBSCRIPTION; payload: Subscription }
   | { type: typeof ACTIONS.DELETE_SUBSCRIPTION; payload: string }
   | { type: typeof ACTIONS.SET_ERROR; payload: string }
-  | { type: string } // fallback for unknown types
 
 /**
  * Initial state for SubscriptionContext
@@ -57,7 +57,7 @@ export function subscriptionReducer(
     // Load subscriptions from localStorage (used on app start in Story 2.5)
     case ACTIONS.SET_SUBSCRIPTIONS: {
       const payload = action.payload
-      // Validate payload is a non-empty array of valid subscriptions
+      // Validate payload is a non-empty array of valid subscriptions with all required fields
       if (
         !payload ||
         !Array.isArray(payload) ||
@@ -67,7 +67,10 @@ export function subscriptionReducer(
             typeof item === 'object' &&
             'id' in item &&
             'name' in item &&
-            'cost' in item
+            'cost' in item &&
+            'dueDate' in item &&
+            'createdAt' in item &&
+            'updatedAt' in item
         )
       ) {
         return state // Silently reject invalid payload
@@ -194,10 +197,21 @@ export const SubscriptionContext = React.createContext<
  *
  * @param children - React components to wrap
  */
-export const SubscriptionProvider: React.FC<{ children: ReactNode }> = ({
+const SubscriptionProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [state, dispatch] = useReducer(subscriptionReducer, initialState)
+
+  // Story 2.5: Load subscriptions from localStorage on app start
+  // This useEffect runs exactly once on component mount (empty dependency array)
+  // and initializes the subscription state with persisted data
+  useEffect(() => {
+    const loadedSubscriptions = loadSubscriptionsFromStorage()
+    dispatch({
+      type: ACTIONS.SET_SUBSCRIPTIONS,
+      payload: loadedSubscriptions,
+    })
+  }, [dispatch]) // Add dispatch to dependency array for ESLint compliance
 
   // Context value includes both state and dispatch for Story 2.4 hook to wrap
   const contextValue: { state: SubscriptionState; dispatch: React.Dispatch<SubscriptionAction> } = {
@@ -211,3 +225,5 @@ export const SubscriptionProvider: React.FC<{ children: ReactNode }> = ({
     </SubscriptionContext.Provider>
   )
 }
+
+export { SubscriptionProvider }

@@ -32,7 +32,7 @@
 # - Stories should pass through 'review' before 'done'
 
 generated: 2026-04-28
-last_updated: '2026-04-29 [story-2-4-review-complete-all-patches-applied]'
+last_updated: '2026-04-30 [epic-2-complete]'
 project: BMad-subscription-tracker
 project_key: NOKEY
 tracking_system: file-system
@@ -48,12 +48,12 @@ development_status:
   epic-1-retrospective: optional
 
   # ========== EPIC 2: State Management & Data Persistence ==========
-  epic-2: in-progress
+  epic-2: done
   2-1-create-subscription-type-constants: done
   2-2-create-localstorage-utility-functions: done
   2-3-create-subscriptioncontext-with-usereducer: done
   2-4-create-usesubscriptions-custom-hook: done
-  2-5-load-subscriptions-from-storage-on-app-start: backlog
+  2-5-load-subscriptions-from-storage-on-app-start: done
   epic-2-retrospective: optional
 
   # ========== EPIC 3: Add & Display Subscriptions ==========
