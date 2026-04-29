@@ -40,11 +40,11 @@ story_location: {project-root}/_bmad-output/implementation-artifacts
 
 development_status:
   # ========== EPIC 1: Foundation & Project Setup ==========
-  epic-1: in-progress
+  epic-1: done
   1-1-initialize-vite-react-typescript-project: done
   1-2-configure-typescript-strict-mode-project-structure: done
   1-3-install-react-hook-form-v7-dependency: done
-  1-4-create-global-css-setup-css-variables: backlog
+  1-4-create-global-css-setup-css-variables: done
   epic-1-retrospective: optional
 
   # ========== EPIC 2: State Management & Data Persistence ==========
