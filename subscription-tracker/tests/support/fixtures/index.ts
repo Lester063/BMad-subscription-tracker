@@ -35,8 +35,10 @@ export const test = base.extend<{
     await use(navigation);
   },
 
-  browser: async ({ page }: any, use: any) => {
-    const helper = new BrowserHelper(page);
+  browser: async ({}, use: any) => {
+    // Note: browser helper doesn't need page directly
+    // If page is needed, it should be passed in method calls
+    const helper = { /* Placeholder - can be extended */ };
     await use(helper);
   },
 });
