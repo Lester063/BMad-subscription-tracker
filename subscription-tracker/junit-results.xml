@@ -1,9 +1,9 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="3.2443940000000295">
-<testsuite name="subscription-form.spec.ts" timestamp="2026-04-30T02:58:58.282Z" hostname="chromium" tests="1" failures="0" skipped="0" time="0.695" errors="0">
-<testcase name="SubscriptionForm Component › UBS-3.1.17: should display form with proper layout" classname="subscription-form.spec.ts" time="0.695">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="3.234268">
+<testsuite name="subscription-form.spec.ts" timestamp="2026-04-30T05:06:05.971Z" hostname="chromium" tests="1" failures="0" skipped="0" time="0.711" errors="0">
+<testcase name="SubscriptionForm Component › UBS-3.1.12: should show visual focus indicator on focused elements" classname="subscription-form.spec.ts" time="0.711">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-ed115-lay-form-with-proper-layout-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-form-Subscrip-5aabc-dicator-on-focused-elements-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
