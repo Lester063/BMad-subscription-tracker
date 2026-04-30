@@ -1,0 +1,133 @@
+/**
+ * SubscriptionForm CSS Module
+ * BEM naming: Block__Element--Modifier
+ * All colors/spacing use CSS variables from src/styles/variables.css
+ */
+
+/* Block: SubscriptionForm */
+.SubscriptionForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background-color: var(--bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  max-width: 500px;
+}
+
+/* Block__Element: Field */
+.SubscriptionForm__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Block__Element: Label */
+.SubscriptionForm__label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text);
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+/* Block__Element: Input */
+.SubscriptionForm__input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  color: var(--text);
+  background-color: var(--bg);
+  transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.SubscriptionForm__input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(170, 59, 255, 0.1);
+}
+
+.SubscriptionForm__input:disabled {
+  background-color: var(--bg-secondary);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.SubscriptionForm__input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Block__Element: Actions Container */
+.SubscriptionForm__actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: flex-start;
+  margin-top: var(--space-sm);
+}
+
+/* Block__Element: Button */
+.SubscriptionForm__button {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  border: none;
+  transition: background-color 150ms ease-in-out, transform 150ms ease-in-out;
+  user-select: none;
+}
+
+.SubscriptionForm__button:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.SubscriptionForm__button:active {
+  transform: scale(0.98);
+}
+
+.SubscriptionForm__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Block__Element--Modifier: Primary Button */
+.SubscriptionForm__button--primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.SubscriptionForm__button--primary:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+}
+
+/* Block__Element--Modifier: Secondary Button */
+.SubscriptionForm__button--secondary {
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.SubscriptionForm__button--secondary:hover:not(:disabled) {
+  background-color: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
+/* Responsive: Stack buttons on mobile */
+@media (max-width: 640px) {
+  .SubscriptionForm {
+    max-width: 100%;
+    padding: var(--space-sm);
+  }
+
+  .SubscriptionForm__actions {
+    flex-direction: column;
+  }
+
+  .SubscriptionForm__button {
+    width: 100%;
+  }
+}
