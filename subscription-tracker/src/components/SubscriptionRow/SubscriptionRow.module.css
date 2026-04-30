@@ -1,0 +1,73 @@
+/* SubscriptionRow.module.css */
+
+/* Row container */
+.row {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Subscription name */
+.name {
+  flex: 1;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Monthly cost */
+.cost {
+  color: var(--color-success);
+  margin-right: var(--spacing-lg);
+}
+
+/* Due date */
+.dueDate {
+  color: var(--color-text-muted);
+  margin-right: var(--spacing-lg);
+}
+
+/* Action buttons container */
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* Edit button */
+.editBtn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+}
+
+.editBtn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.editBtn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Delete button */
+.deleteBtn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-error);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+}
+
+.deleteBtn:hover {
+  background-color: var(--color-error-hover);
+}
+
+.deleteBtn:focus-visible {
+  outline: 2px solid var(--color-error);
+  outline-offset: 2px;
+}
