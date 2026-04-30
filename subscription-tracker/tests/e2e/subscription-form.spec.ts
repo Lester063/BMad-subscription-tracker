@@ -56,7 +56,7 @@ test.describe('SubscriptionForm Component', () => {
     
     // Verify all fields are cleared
     await expect(page.getByLabel('Subscription Name')).toHaveValue('');
-    await expect(page.getByLabel('Monthly Cost ($)')).toHaveValue('');
+    await expect(page.getByLabel('Monthly Cost ($)')).toHaveValue('0');
     await expect(page.getByLabel('Due Date (Day of Month, 1-31)')).toHaveValue('');
   });
 

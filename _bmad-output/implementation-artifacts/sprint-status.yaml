@@ -58,7 +58,7 @@ development_status:
 
   # ========== EPIC 3: Add & Display Subscriptions ==========
   epic-3: in-progress
-  3-1-create-subscriptionform-component-with-react-hook-form: ready-for-dev
+  3-1-create-subscriptionform-component-with-react-hook-form: done
   3-2-create-subscriptionlist-subscriptionrow-components: backlog
   3-3-implement-add-subscription-workflow: backlog
   3-4-implement-subscription-display-with-real-time-updates: backlog
