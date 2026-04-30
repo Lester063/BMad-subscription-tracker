@@ -3,7 +3,7 @@ story_id: "3.2"
 story_key: "3-2-create-subscriptionlist-subscriptionrow-components"
 epic: "3"
 epic_title: "Add & Display Subscriptions"
-status: "ready-for-dev"
+status: "review"
 created: "2026-04-30"
 created_by: "bmad-create-story"
 developer_guide_version: "1.0"
@@ -13,7 +13,7 @@ developer_guide_version: "1.0"
 
 **Epic:** Add & Display Subscriptions (Epic 3)  
 **Story ID:** 3.2  
-**Status:** ready-for-dev  
+**Status:** review  
 **Sequence:** Second story in Epic 3; follows Story 3.1 (SubscriptionForm)  
 **Depends On:**
 - Story 3-1 (SubscriptionForm component)
@@ -334,6 +334,12 @@ src/components/
 | Date | Note |
 |------|------|
 | 2026-04-30 | Story created - ready for implementation |
+| 2026-04-30 | Implemented SubscriptionList.tsx with useSubscriptions hook |
+| 2026-04-30 | Implemented SubscriptionList.module.css with BEM naming |
+| 2026-04-30 | Implemented SubscriptionRow.tsx with memo optimization |
+| 2026-04-30 | Implemented SubscriptionRow.module.css with BEM naming |
+| 2026-04-30 | Added unit test for empty state - PASSING |
+| 2026-04-30 | TypeScript compilation - NO ERRORS |
 | | |
 | | |
 
@@ -341,13 +347,13 @@ src/components/
 
 ## ✅ Completion Checklist
 
-- [ ] SubscriptionList.tsx created with useSubscriptions hook
-- [ ] SubscriptionList.module.css created with BEM naming
-- [ ] SubscriptionRow.tsx created with subscription prop
-- [ ] SubscriptionRow.module.css created with BEM naming
-- [ ] Empty state displays "No subscriptions yet."
-- [ ] All four data fields displayed (name, cost, dueDate, actions)
-- [ ] Edit/Delete buttons present (non-functional this story)
-- [ ] Unit tests written and passing
+- [x] SubscriptionList.tsx created with useSubscriptions hook
+- [x] SubscriptionList.module.css created with BEM naming
+- [x] SubscriptionRow.tsx created with subscription prop
+- [x] SubscriptionRow.module.css created with BEM naming
+- [x] Empty state displays "No subscriptions yet."
+- [x] All four data fields displayed (name, cost, dueDate, actions)
+- [x] Edit/Delete buttons present (non-functional this story)
+- [x] Unit tests written and passing
 - [ ] E2E tests written and passing
 - [ ] Code review completed (Story 3-1 patterns followed)

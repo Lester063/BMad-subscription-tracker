@@ -1,5 +1,6 @@
 import { SubscriptionProvider } from './context/SubscriptionContext'
 import { SubscriptionForm, type FormData } from './components/SubscriptionForm/SubscriptionForm'
+import { SubscriptionList } from './components/SubscriptionList/SubscriptionList'
 import './App.css'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <div className="app">
         <h1>Subscription Tracker</h1>
         <SubscriptionForm onSubmit={handleFormSubmit} />
+        <SubscriptionList />
       </div>
     </SubscriptionProvider>
   )
