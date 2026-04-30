@@ -1,0 +1,151 @@
+---
+story_id: "3.2"
+story_key: "3-2-create-subscriptionlist-subscriptionrow-components"
+epic: "3"
+epic_title: "Add & Display Subscriptions"
+status: "atdd-red-phase"
+created: "2026-04-30"
+created_by: "bmad-testarch-atdd"
+phase: "RED"
+---
+
+# ATDD Red Phase: Story 3.2 — SubscriptionList & SubscriptionRow Components
+
+**Epic:** Add & Display Subscriptions (Epic 3)  
+**Story ID:** 3.2  
+**Status:** Red Phase Complete  
+**Phase:** RED (tests fail before implementation)  
+**Generated:** 2026-04-30
+
+---
+
+## 🎯 ATDD Overview
+
+This document contains **red-phase acceptance test scaffolds** for Story 3.2. These tests are designed to **FAIL** initially because the implementation doesn't exist yet. Once the developer implements the feature, these tests should pass (Green phase).
+
+---
+
+## 🔴 Red Phase Test Scaffolds
+
+### E2E Tests (Playwright)
+
+| Test ID | Scenario | Expected Behavior | Current Status |
+|---------|----------|------------------|----------------|
+| **ATDD-E2E-01** | Empty State | User sees "No subscriptions yet." when list is empty | 🔴 FAILS (expected) |
+| **ATDD-E2E-02** | Subscription Name | User sees subscription name displayed | 🔴 FAILS (expected) |
+| **ATDD-E2E-03** | Cost Formatting | User sees cost in currency format ($XX.XX) | 🔴 FAILS (expected) |
+| **ATDD-E2E-04** | Due Date Display | User sees due date with ordinal (15th) | 🔴 FAILS (expected) |
+| **ATDD-E2E-05** | Edit Button | User sees edit button on each row | 🔴 FAILS (expected) |
+| **ATDD-E2E-06** | Delete Button | User sees delete button on each row | 🔴 FAILS (expected) |
+| **ATDD-E2E-07** | Performance | List renders 100+ items within 100ms | 🔴 FAILS (expected) |
+
+### Unit Tests (Vitest)
+
+| Test ID | Scenario | Expected Behavior | Current Status |
+|---------|----------|------------------|----------------|
+| **ATDD-UNIT-01** | Component Export | SubscriptionList exports functional component | 🔴 FAILS (expected) |
+| **ATDD-UNIT-02** | Hook Usage | Component uses useSubscriptions hook | 🔴 FAILS (expected) |
+| **ATDD-UNIT-03** | Row Rendering | SubscriptionRow displays all fields | 🔴 FAILS (expected) |
+
+---
+
+## 📝 Test Scaffold Code
+
+### E2E: Empty State Test
+
+```typescript
+// filepath: tests/e2e/subscription-list.spec.ts
+import { test, expect } from '@playwright/test';
+
+test.skip('should display empty state when no subscriptions exist', async ({ page }) => {
+  // Navigate to the application
+  await page.goto('/');
+  
+  // Verify empty state message is visible
+  await expect(page.getByText('No subscriptions yet.')).toBeVisible();
+  
+  // Verify no list container renders when empty
+  const listContainer = page.locator('ul');
+  await expect(listContainer).toHaveCount(0);
+});
+```
+
+### E2E: Subscription Display Test
+
+```typescript
+test.skip('should display subscription name in list', async ({ page }) => {
+  // Setup: Add subscription via localStorage (data factory)
+  await page.goto('/');
+  
+  // Verify subscription name appears in the list
+  await expect(page.getByText('Netflix')).toBeVisible();
+});
+```
+
+### E2E: Cost Formatting Test
+
+```typescript
+test.skip('should display subscription cost in currency format', async ({ page }) => {
+  await page.goto('/');
+  
+  // Verify cost is formatted as currency (e.g., $15.99)
+  await expect(page.getByText('$15.99')).toBeVisible();
+});
+```
+
+### E2E: Due Date Test
+
+```typescript
+test.skip('should display due date with proper formatting', async ({ page }) => {
+  await page.goto('/');
+  
+  // Verify due date displays with ordinal (e.g., "Due: 15th")
+  await expect(page.getByText(/Due: \d+(st|nd|rd|th)/)).toBeVisible();
+});
+```
+
+### E2E: Performance Test
+
+```typescript
+test.skip('should render 100+ subscriptions within 100ms', async ({ page }) => {
+  // Setup: Seed 100+ subscriptions
+  await page.goto('/');
+  
+  // Measure render time
+  const startTime = Date.now();
+  
+  // Verify list renders
+  const rows = page.locator('li');
+  await expect(rows).toHaveCount(100);
+  
+  const renderTime = Date.now() - startTime;
+  expect(renderTime).toBeLessThan(100);
+});
+```
+
+---
+
+## ✅ Implementation Checklist
+
+The developer should use this checklist to verify implementation completeness:
+
+- [ ] SubscriptionList component created
+- [ ] SubscriptionRow component created
+- [ ] Empty state displays when no subscriptions
+- [ ] Subscription name displays correctly
+- [ ] Cost displays in currency format
+- [ ] Due date displays with ordinal
+- [ ] Edit button visible on each row
+- [ ] Delete button visible on each row
+- [ ] Performance: 100+ items render within 100ms
+
+---
+
+## 🔗 Related Artifacts
+
+- Story 3.2 Requirements: [_bmad-output/implementation-artifacts/3-2-create-subscriptionlist-subscriptionrow-components.md](_bmad-output/implementation-artifacts/3-2-create-subscriptionlist-subscriptionrow-components.md)
+- Test Design: [_bmad-output/test-artifacts/test-design-story-3-2.md](_bmad-output/test-artifacts/test-design-story-3-2.md)
+
+---
+
+*Generated by Murat — Master Test Architect (ATDD Red Phase)*
