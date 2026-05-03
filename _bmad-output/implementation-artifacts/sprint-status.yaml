@@ -32,7 +32,7 @@
 # - Stories should pass through 'review' before 'done'
 
 generated: 2026-04-28
-last_updated: '2026-04-30 [story-3-2-completed]'
+last_updated: '2026-04-30 [story-3-3-created]'
 project: BMad-subscription-tracker
 project_key: NOKEY
 tracking_system: file-system
@@ -60,7 +60,7 @@ development_status:
   epic-3: in-progress
   3-1-create-subscriptionform-component-with-react-hook-form: done
   3-2-create-subscriptionlist-subscriptionrow-components: done
-  3-3-implement-add-subscription-workflow: backlog
+  3-3-implement-add-subscription-workflow: ready-for-dev
   3-4-implement-subscription-display-with-real-time-updates: backlog
   3-5-add-keyboard-navigation-accessibility-wcag-2-1-level-a: backlog
   epic-3-retrospective: optional
