@@ -1,0 +1,45 @@
+# EDGE CASE HUNTER REVIEW
+## Story: 3-3-implement-add-subscription-workflow
+
+**Context**: You have the diff AND read access to the project structure. Examine branching paths, boundary conditions, edge cases, and state transitions.
+
+**Your Task**: Find ONLY unhandled edge cases. Do NOT overlap with code quality/bugs (Blind Hunter does that). Focus on:
+
+1. **Boundary conditions**: What happens at limits? (e.g., when cost = 0, dueDate = 31, name = empty string)
+2. **State transitions**: What if form resets while message is displaying? What if component unmounts mid-submission?
+3. **Async hazards**: Race conditions, callback ordering, cleanup
+4. **Type mismatches**: What if FormData has unexpected shape? What if hook returns undefined?
+5. **Null/undefined handling**: What breaks if props are missing or null?
+6. **Error paths**: What if addSubscription throws? What if localStorage fails?
+7. **Timing issues**: What if user clicks submit twice rapidly? What if component unmounts during setTimeout?
+
+**Key Files to Examine**:
+- src/App.tsx (submission logic, form reset, success message timing)
+- src/components/SubscriptionForm/SubscriptionForm.tsx (ref exposure, reset implementation)
+- src/types/subscription.ts (Subscription shape - load if needed)
+- src/hooks/useSubscriptions.ts (addSubscription behavior, return type)
+
+**Diff Context**:
+- UUID fallback: `Math.random().toString(36).substr(2, 9)` - collision risk?
+- Form reset: `formRef.current?.reset()` - what if ref is null during cleanup?
+- Success message: 3-second setTimeout - what if component unmounts before timeout completes?
+- Cost/DueDate conversion: parseFloat/parseInt - what if these fail or return NaN?
+
+**Output Format**: Markdown list of edge cases, one per line.
+- Edge case title
+- Scenario (what causes it?)
+- Expected behavior (what SHOULD happen?)
+- Actual behavior or missing handling (what DOES happen?)
+- Severity (critical, high, medium, low)
+
+**Example Output**:
+```
+- **Rapid form submissions**: User clicks "Add" twice within 500ms
+  - Expected: Second submission queued or debounced
+  - Actual/Missing: No debounce; both submissions dispatch immediately
+  - Severity: Medium
+```
+
+---
+
+**GENERATE YOUR EDGE CASE FINDINGS NOW.**

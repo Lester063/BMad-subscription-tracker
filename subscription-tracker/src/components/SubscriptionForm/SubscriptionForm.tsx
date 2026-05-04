@@ -14,7 +14,7 @@
  * - WCAG 2.1 Level A accessibility
  */
 
-import React from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import { useForm, Controller, type UseFormReturn } from 'react-hook-form';
 import styles from './SubscriptionForm.module.css';
 
@@ -61,6 +61,24 @@ export interface SubscriptionFormProps {
    * For Edit mode: closes edit modal or returns to list view
    */
   onCancel?: () => void;
+
+  /**
+   * Disable form submission (optional).
+   * Used to prevent double submissions while processing (Story 3.3: Rapid submission handling)
+   */
+  disabled?: boolean;
+}
+
+/**
+ * Ref type for SubscriptionForm component
+ * Allows parent component to programmatically reset the form
+ * (Story 3.3: Reset form after successful submission)
+ */
+export interface SubscriptionFormRef {
+  /**
+   * Reset all form fields to their default values
+   */
+  reset: () => void;
 }
 
 /**
@@ -76,8 +94,12 @@ export interface SubscriptionFormProps {
  * Validation and duplicate prevention handled in later stories.
  * This story focuses on form rendering and React Hook Form integration.
  * 
+ * Supports ref-based reset for Story 3.3 (form clearing after submission).
+ * 
  * Usage for Add (Story 3.1):
- *   <SubscriptionForm onSubmit={handleAddSubscription} />
+ *   const formRef = useRef<SubscriptionFormRef>(null);
+ *   <SubscriptionForm ref={formRef} onSubmit={handleAddSubscription} />
+ *   // After submission: formRef.current?.reset();
  * 
  * Usage for Edit (Story 4.1):
  *   <SubscriptionForm
@@ -87,33 +109,43 @@ export interface SubscriptionFormProps {
  *     onCancel={handleCloseEdit}
  *   />
  */
-export function SubscriptionForm({
-  onSubmit,
-  initialValues,
-  submitButtonLabel = 'Add Subscription',
-  onCancel,
-}: SubscriptionFormProps): JSX.Element {
-  // React Hook Form setup
-  const form: UseFormReturn<FormData> = useForm<FormData>({
-    defaultValues: {
-      name: initialValues?.name || '',
-      cost: initialValues?.cost || 0,
-      dueDate: initialValues?.dueDate || '',
+export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionFormProps>(
+  (
+    {
+      onSubmit,
+      initialValues,
+      submitButtonLabel = 'Add Subscription',
+      onCancel,
+      disabled = false,
     },
-  });
+    ref
+  ) => {
+    // React Hook Form setup
+    const form: UseFormReturn<FormData> = useForm<FormData>({
+      defaultValues: {
+        name: initialValues?.name || '',
+        cost: initialValues?.cost || 0,
+        dueDate: initialValues?.dueDate || '',
+      },
+    });
 
-  const { control, handleSubmit, reset } = form;
+    const { control, handleSubmit, reset } = form;
 
-  const handleFormSubmit = (data: FormData): void => {
-    onSubmit(data);
-  };
+    // Expose reset function to parent component via ref (Story 3.3)
+    useImperativeHandle(ref, () => ({
+      reset: () => reset(),
+    }));
 
-  const handleReset = (): void => {
-    reset();
-    if (onCancel) {
-      onCancel();
-    }
-  };
+    const handleFormSubmit = (data: FormData): void => {
+      onSubmit(data);
+    };
+
+    const handleReset = (): void => {
+      reset();
+      if (onCancel) {
+        onCancel();
+      }
+    };
 
   return (
     <form 
@@ -206,6 +238,7 @@ export function SubscriptionForm({
       <div className={styles.SubscriptionForm__actions}>
         <button
           type="submit"
+          disabled={disabled}
           className={`${styles.SubscriptionForm__button} ${styles['SubscriptionForm__button--primary']}`}
         >
           {submitButtonLabel}
@@ -213,6 +246,7 @@ export function SubscriptionForm({
         <button
           type="button"
           onClick={handleReset}
+          disabled={disabled}
           className={`${styles.SubscriptionForm__button} ${styles['SubscriptionForm__button--secondary']}`}
         >
           Clear
@@ -220,6 +254,6 @@ export function SubscriptionForm({
       </div>
     </form>
   );
-}
+});
 
 export default SubscriptionForm;
