@@ -1,121 +1,51 @@
-<testsuites id="" name="" tests="17" failures="0" skipped="0" errors="0" time="8.277841000000015">
-<testsuite name="subscription-form.spec.ts" timestamp="2026-05-04T02:19:15.701Z" hostname="chromium" tests="17" failures="0" skipped="0" time="22.494" errors="0">
-<testcase name="SubscriptionForm Component › UBS-3.1.1: should allow user to enter subscription name in name field" classname="subscription-form.spec.ts" time="1.361">
+<testsuites id="" name="" tests="7" failures="0" skipped="0" errors="0" time="7.5777529999997935">
+<testsuite name="subscription-list.spec.ts" timestamp="2026-05-04T06:33:40.146Z" hostname="chromium" tests="7" failures="0" skipped="0" time="17.551" errors="0">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display empty state when no subscriptions exist" classname="subscription-list.spec.ts" time="2.528">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-8a3b4-cription-name-in-name-field-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-cffd8-when-no-subscriptions-exist-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.2: should allow user to enter monthly cost in cost field" classname="subscription-form.spec.ts" time="1.513">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display subscription name in list" classname="subscription-list.spec.ts" time="3.091">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-79fef--monthly-cost-in-cost-field-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-08723-y-subscription-name-in-list-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.3: should allow user to enter due date (day of month) in due date field" classname="subscription-form.spec.ts" time="1.554">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display subscription cost in currency format" classname="subscription-list.spec.ts" time="2.998">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-de2d7--of-month-in-due-date-field-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-106cd-ion-cost-in-currency-format-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.4: should display placeholder text in name field" classname="subscription-form.spec.ts" time="1.22">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display due date with proper formatting" classname="subscription-list.spec.ts" time="2.343">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-ac71b-ceholder-text-in-name-field-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-59244-date-with-proper-formatting-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.5: should clear all fields when user clicks Clear button" classname="subscription-form.spec.ts" time="1.589">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P1] should display edit button on each row" classname="subscription-list.spec.ts" time="2.69">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-b10da-en-user-clicks-Clear-button-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-fa67b-lay-edit-button-on-each-row-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.6: should submit form when user clicks Add Subscription button" classname="subscription-form.spec.ts" time="1.62">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P1] should display delete button on each row" classname="subscription-list.spec.ts" time="2.53">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-5b204-cks-Add-Subscription-button-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-3c6f4-y-delete-button-on-each-row-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.7: should not show errors when submitting with valid data" classname="subscription-form.spec.ts" time="4.861">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should render 100+ subscriptions within 100ms" classname="subscription-list.spec.ts" time="1.371">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-b1a9a--submitting-with-valid-data-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.8: should allow keyboard navigation between fields using Tab" classname="subscription-form.spec.ts" time="1.264">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-55756-on-between-fields-using-Tab-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.9: should submit form when user presses Enter on last field" classname="subscription-form.spec.ts" time="1.028">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-0e70e-presses-Enter-on-last-field-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.10: should display label for name field" classname="subscription-form.spec.ts" time="0.959">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-1592f-isplay-label-for-name-field-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.11: should allow focus on name field using keyboard" classname="subscription-form.spec.ts" time="0.935">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-1e3c3-n-name-field-using-keyboard-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.12: should show visual focus indicator on focused elements" classname="subscription-form.spec.ts" time="0.838">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-5aabc-dicator-on-focused-elements-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.13: should have proper label association for screen reader" classname="subscription-form.spec.ts" time="0.76">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-bb8cf-sociation-for-screen-reader-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.14: should display three input fields when form renders" classname="subscription-form.spec.ts" time="0.755">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-b2602-ut-fields-when-form-renders-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.15: should display Add Subscription submit button" classname="subscription-form.spec.ts" time="0.767">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-7e9e6--Subscription-submit-button-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.16: should display Clear reset button" classname="subscription-form.spec.ts" time="0.787">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-4a923--display-Clear-reset-button-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="SubscriptionForm Component › UBS-3.1.17: should display form with proper layout" classname="subscription-form.spec.ts" time="0.683">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\subscription-form-Subscrip-ed115-lay-form-with-proper-layout-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-5189f--subscriptions-within-100ms-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
