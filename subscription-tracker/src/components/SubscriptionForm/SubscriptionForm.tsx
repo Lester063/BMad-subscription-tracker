@@ -172,6 +172,7 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
               placeholder="e.g., Netflix"
               maxLength={100}
               className={styles.SubscriptionForm__input}
+              data-testid="subscription-name-input"
               aria-required="true"
               {...field}
             />
@@ -199,6 +200,7 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
               step="0.01"
               min="0"
               className={styles.SubscriptionForm__input}
+              data-testid="subscription-cost-input"
               aria-required="true"
               {...field}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -227,6 +229,7 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
               type="text"
               placeholder="e.g., 15"
               className={styles.SubscriptionForm__input}
+              data-testid="subscription-duedate-input"
               aria-required="true"
               {...field}
             />
@@ -239,6 +242,7 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
         <button
           type="submit"
           disabled={disabled}
+          data-testid="add-subscription-button"
           className={`${styles.SubscriptionForm__button} ${styles['SubscriptionForm__button--primary']}`}
         >
           {submitButtonLabel}
@@ -247,6 +251,7 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
           type="button"
           onClick={handleReset}
           disabled={disabled}
+          data-testid="clear-button"
           className={`${styles.SubscriptionForm__button} ${styles['SubscriptionForm__button--secondary']}`}
         >
           Clear

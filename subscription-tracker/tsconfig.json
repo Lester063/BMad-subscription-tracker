@@ -7,11 +7,13 @@
     "jsx": "react-jsx",
     "moduleResolution": "bundler",
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "types": ["node"]
   },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.test.json" }
   ]
 }

@@ -87,10 +87,10 @@ function AppContent() {
   }, [successMessage])
 
   return (
-    <div className="app">
+    <div className="app" data-testid="app-container" role="main">
       <h1>Subscription Tracker</h1>
       {successMessage && (
-        <div className="app__success-message" role="alert" aria-live="polite">
+        <div className="app__success-message" data-testid="success-message" role="alert" aria-live="polite">
           {successMessage}
         </div>
       )}

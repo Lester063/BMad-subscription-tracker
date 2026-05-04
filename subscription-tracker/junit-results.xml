@@ -1,154 +1,53 @@
-<testsuites id="" name="" tests="6" failures="0" skipped="0" errors="6" time="1.8520869999998248">
-<testsuite name="subscription-management.spec.ts" timestamp="2026-05-04T00:52:35.344Z" hostname="chromium" tests="6" failures="0" skipped="0" time="0.049" errors="6">
-<testcase name="Subscription Management › should display empty state when no subscriptions exist" classname="subscription-management.spec.ts" time="0.009">
+<testsuites id="" name="" tests="7" failures="0" skipped="0" errors="0" time="7.5777529999997935">
+<testsuite name="subscription-list.spec.ts" timestamp="2026-05-04T06:33:40.146Z" hostname="chromium" tests="7" failures="0" skipped="0" time="17.551" errors="0">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display empty state when no subscriptions exist" classname="subscription-list.spec.ts" time="2.528">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-management-Su-5ba4b-when-no-subscriptions-exist-chromium\error-context.md]]
-
-[[ATTACHMENT|test-results\subscription-management-Su-5ba4b-when-no-subscriptions-exist-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-cffd8-when-no-subscriptions-exist-chromium\trace.zip]]
 ]]>
 </system-out>
-<error message="Cannot read properties of undefined (reading &apos;headers&apos;)" type="TypeError">
-<![CDATA[  [chromium] › subscription-management.spec.ts:20:3 › Subscription Management › should display empty state when no subscriptions exist 
-
-    TypeError: Cannot read properties of undefined (reading 'headers')
-
-    Error Context: ..\..\test-results\subscription-management-Su-5ba4b-when-no-subscriptions-exist-chromium\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\subscription-management-Su-5ba4b-when-no-subscriptions-exist-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\subscription-management-Su-5ba4b-when-no-subscriptions-exist-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</error>
 </testcase>
-<testcase name="Subscription Management › should add a new subscription" classname="subscription-management.spec.ts" time="0.009">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display subscription name in list" classname="subscription-list.spec.ts" time="3.091">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-management-Su-05de5-ould-add-a-new-subscription-chromium\error-context.md]]
-
-[[ATTACHMENT|test-results\subscription-management-Su-05de5-ould-add-a-new-subscription-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-08723-y-subscription-name-in-list-chromium\trace.zip]]
 ]]>
 </system-out>
-<error message="Cannot read properties of undefined (reading &apos;headers&apos;)" type="TypeError">
-<![CDATA[  [chromium] › subscription-management.spec.ts:34:3 › Subscription Management › should add a new subscription 
-
-    TypeError: Cannot read properties of undefined (reading 'headers')
-
-    Error Context: ..\..\test-results\subscription-management-Su-05de5-ould-add-a-new-subscription-chromium\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\subscription-management-Su-05de5-ould-add-a-new-subscription-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\subscription-management-Su-05de5-ould-add-a-new-subscription-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</error>
 </testcase>
-<testcase name="Subscription Management › should display total cost correctly" classname="subscription-management.spec.ts" time="0.008">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display subscription cost in currency format" classname="subscription-list.spec.ts" time="2.998">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-management-Su-95eae-isplay-total-cost-correctly-chromium\error-context.md]]
-
-[[ATTACHMENT|test-results\subscription-management-Su-95eae-isplay-total-cost-correctly-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-106cd-ion-cost-in-currency-format-chromium\trace.zip]]
 ]]>
 </system-out>
-<error message="Cannot read properties of undefined (reading &apos;headers&apos;)" type="TypeError">
-<![CDATA[  [chromium] › subscription-management.spec.ts:60:3 › Subscription Management › should display total cost correctly 
-
-    TypeError: Cannot read properties of undefined (reading 'headers')
-
-    Error Context: ..\..\test-results\subscription-management-Su-95eae-isplay-total-cost-correctly-chromium\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\subscription-management-Su-95eae-isplay-total-cost-correctly-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\subscription-management-Su-95eae-isplay-total-cost-correctly-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</error>
 </testcase>
-<testcase name="Subscription Management › should load subscriptions from localStorage on app start" classname="subscription-management.spec.ts" time="0.006">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display due date with proper formatting" classname="subscription-list.spec.ts" time="2.343">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-management-Su-a5fad-m-localStorage-on-app-start-chromium\error-context.md]]
-
-[[ATTACHMENT|test-results\subscription-management-Su-a5fad-m-localStorage-on-app-start-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-59244-date-with-proper-formatting-chromium\trace.zip]]
 ]]>
 </system-out>
-<error message="Cannot read properties of undefined (reading &apos;headers&apos;)" type="TypeError">
-<![CDATA[  [chromium] › subscription-management.spec.ts:77:3 › Subscription Management › should load subscriptions from localStorage on app start 
-
-    TypeError: Cannot read properties of undefined (reading 'headers')
-
-    Error Context: ..\..\test-results\subscription-management-Su-a5fad-m-localStorage-on-app-start-chromium\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\subscription-management-Su-a5fad-m-localStorage-on-app-start-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\subscription-management-Su-a5fad-m-localStorage-on-app-start-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</error>
 </testcase>
-<testcase name="Subscription Management › should handle form validation errors" classname="subscription-management.spec.ts" time="0.011">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P1] should display edit button on each row" classname="subscription-list.spec.ts" time="2.69">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-management-Su-f13d2-ndle-form-validation-errors-chromium\error-context.md]]
-
-[[ATTACHMENT|test-results\subscription-management-Su-f13d2-ndle-form-validation-errors-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-fa67b-lay-edit-button-on-each-row-chromium\trace.zip]]
 ]]>
 </system-out>
-<error message="Cannot read properties of undefined (reading &apos;headers&apos;)" type="TypeError">
-<![CDATA[  [chromium] › subscription-management.spec.ts:99:3 › Subscription Management › should handle form validation errors 
-
-    TypeError: Cannot read properties of undefined (reading 'headers')
-
-    Error Context: ..\..\test-results\subscription-management-Su-f13d2-ndle-form-validation-errors-chromium\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\subscription-management-Su-f13d2-ndle-form-validation-errors-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\subscription-management-Su-f13d2-ndle-form-validation-errors-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</error>
 </testcase>
-<testcase name="Subscription Management › should maintain state across page refresh" classname="subscription-management.spec.ts" time="0.006">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P1] should display delete button on each row" classname="subscription-list.spec.ts" time="2.53">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\subscription-management-Su-bb587-n-state-across-page-refresh-chromium\error-context.md]]
-
-[[ATTACHMENT|test-results\subscription-management-Su-bb587-n-state-across-page-refresh-chromium\trace.zip]]
+[[ATTACHMENT|test-results\subscription-list-Subscrip-3c6f4-y-delete-button-on-each-row-chromium\trace.zip]]
 ]]>
 </system-out>
-<error message="Cannot read properties of undefined (reading &apos;headers&apos;)" type="TypeError">
-<![CDATA[  [chromium] › subscription-management.spec.ts:111:3 › Subscription Management › should maintain state across page refresh 
-
-    TypeError: Cannot read properties of undefined (reading 'headers')
-
-    Error Context: ..\..\test-results\subscription-management-Su-bb587-n-state-across-page-refresh-chromium\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\subscription-management-Su-bb587-n-state-across-page-refresh-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\subscription-management-Su-bb587-n-state-across-page-refresh-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
+</testcase>
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should render 100+ subscriptions within 100ms" classname="subscription-list.spec.ts" time="1.371">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-list-Subscrip-5189f--subscriptions-within-100ms-chromium\trace.zip]]
 ]]>
-</error>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>
