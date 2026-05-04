@@ -28,9 +28,13 @@ export function SubscriptionList() {
     return <p className={styles.emptyState} data-testid="empty-list-message">No subscriptions yet.</p>;
   }
   
+  // Sort subscriptions by dueDate in ascending order (1-31)
+  // Using spread operator to preserve original array immutability
+  const sortedSubscriptions = [...subscriptions].sort((a, b) => a.dueDate - b.dueDate);
+  
   return (
     <ul className={styles.list} data-testid="subscription-list">
-      {subscriptions.map(sub => {
+      {sortedSubscriptions.map(sub => {
         // Validate subscription ID is present for React key reconciliation
         if (!sub?.id) {
           console.warn('SubscriptionRow rendered without valid ID:', sub);

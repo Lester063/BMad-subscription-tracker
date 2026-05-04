@@ -192,26 +192,43 @@ export const SubscriptionContext = React.createContext<
  *     <YourApp />
  *   </SubscriptionProvider>
  *
+ * Usage in tests with initial subscriptions:
+ *   <SubscriptionProvider initialSubscriptions={testData}>
+ *     <YourComponent />
+ *   </SubscriptionProvider>
+ *
  * Provides both state and dispatch via context for useSubscriptions() hook (Story 2.4).
  * The hook wraps dispatch to provide helper functions for components.
  *
  * @param children - React components to wrap
+ * @param initialSubscriptions - Optional: for testing, provide initial subscriptions instead of loading from localStorage
  */
-const SubscriptionProvider: React.FC<{ children: ReactNode }> = ({
+const SubscriptionProvider: React.FC<{ children: ReactNode; initialSubscriptions?: Subscription[] }> = ({
   children,
+  initialSubscriptions,
 }) => {
   const [state, dispatch] = useReducer(subscriptionReducer, initialState)
 
   // Story 2.5: Load subscriptions from localStorage on app start
   // This useEffect runs exactly once on component mount (empty dependency array)
   // and initializes the subscription state with persisted data
+  // For testing: if initialSubscriptions provided, use those instead
   useEffect(() => {
-    const loadedSubscriptions = loadSubscriptionsFromStorage()
-    dispatch({
-      type: ACTIONS.SET_SUBSCRIPTIONS,
-      payload: loadedSubscriptions,
-    })
-  }, [dispatch]) // Add dispatch to dependency array for ESLint compliance
+    if (initialSubscriptions) {
+      // Testing mode: use provided initial subscriptions
+      dispatch({
+        type: ACTIONS.SET_SUBSCRIPTIONS,
+        payload: initialSubscriptions,
+      })
+    } else {
+      // Production mode: load from localStorage
+      const loadedSubscriptions = loadSubscriptionsFromStorage()
+      dispatch({
+        type: ACTIONS.SET_SUBSCRIPTIONS,
+        payload: loadedSubscriptions,
+      })
+    }
+  }, [dispatch, initialSubscriptions]) // Add to dependency array for ESLint compliance
 
   // Context value includes both state and dispatch for Story 2.4 hook to wrap
   const contextValue: { state: SubscriptionState; dispatch: React.Dispatch<SubscriptionAction> } = {
