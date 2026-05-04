@@ -25,11 +25,11 @@ export function SubscriptionList() {
   
   // Guard against null/undefined subscriptions from hook
   if (!subscriptions || subscriptions.length === 0) {
-    return <p className={styles.emptyState}>No subscriptions yet.</p>;
+    return <p className={styles.emptyState} data-testid="empty-list-message">No subscriptions yet.</p>;
   }
   
   return (
-    <ul className={styles.list}>
+    <ul className={styles.list} data-testid="subscription-list">
       {subscriptions.map(sub => {
         // Validate subscription ID is present for React key reconciliation
         if (!sub?.id) {

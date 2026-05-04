@@ -104,10 +104,10 @@ function SubscriptionRowComponent({ subscription }: SubscriptionRowProps): React
   const dueDateFormatted = formatDueDate(dueDate);
 
   return (
-    <li className={styles.row}>
-      <span className={styles.name}>{name}</span>
-      <span className={styles.cost}>{costFormatted}</span>
-      <span className={styles.dueDate}>Due: {dueDateFormatted}</span>
+    <li className={styles.row} data-testid="subscription-item">
+      <span className={styles.name} data-testid="subscription-name">{name}</span>
+      <span className={styles.cost} data-testid="subscription-cost">{costFormatted}</span>
+      <span className={styles.dueDate} data-testid="subscription-duedate">Due: {dueDateFormatted}</span>
       <div className={styles.actions}>
         <button className={styles.editBtn} type="button" aria-label={`Edit ${name}`}>Edit</button>
         <button className={styles.deleteBtn} type="button" aria-label={`Delete ${name}`}>Delete</button>

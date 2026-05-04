@@ -8,8 +8,15 @@
  * Focus: User behavior only - no implementation assumptions
  * Test Type: E2E (Playwright) + Component (Vitest)
  * 
- * Generated: 2026-04-30
+ * Generated: 2026-04-30 | Enhanced: 2026-05-04
  * By: Murat (Master Test Architect)
+ * 
+ * ENHANCEMENTS (2026-05-04):
+ * - Added data-testid selectors for resilience
+ * - Deterministic waits (replaced waitForTimeout with event-based patterns)
+ * - Network monitoring for form submission
+ * - Fixture setup for common test initialization
+ * - Support for rapid submission testing
  */
 
 import { test, expect, Page } from '@playwright/test';
