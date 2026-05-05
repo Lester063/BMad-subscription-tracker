@@ -32,7 +32,7 @@
 # - Stories should pass through 'review' before 'done'
 
 generated: 2026-04-28
-last_updated: '2026-05-05 [story-3-5-ready-for-dev]'
+last_updated: '2026-05-05 [story-3-5-approved-ready-for-merge]'
 project: BMad-subscription-tracker
 project_key: NOKEY
 tracking_system: file-system
@@ -62,7 +62,7 @@ development_status:
   3-2-create-subscriptionlist-subscriptionrow-components: done
   3-3-implement-add-subscription-workflow: done
   3-4-implement-subscription-display-with-real-time-updates: done
-  3-5-add-keyboard-navigation-accessibility-wcag-2-1-level-a: ready-for-dev
+  3-5-add-keyboard-navigation-accessibility-wcag-2-1-level-a: review
   epic-3-retrospective: optional
 
   # ========== EPIC 4: Edit & Delete Subscriptions ==========

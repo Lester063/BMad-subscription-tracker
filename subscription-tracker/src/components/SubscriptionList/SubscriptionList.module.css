@@ -1,5 +1,10 @@
 /* SubscriptionList.module.css */
 
+/* Container for list or empty state - ensures aria-label applies to both */
+.listContainer {
+  width: 100%;
+}
+
 /* List container */
 .list {
   list-style: none;
