@@ -25,7 +25,11 @@ export function SubscriptionList() {
   
   // Guard against null/undefined subscriptions from hook
   if (!subscriptions || subscriptions.length === 0) {
-    return <p className={styles.emptyState} data-testid="empty-list-message">No subscriptions yet.</p>;
+    return (
+      <div className={styles.listContainer} aria-label="Subscriptions">
+        <p className={styles.emptyState} data-testid="empty-list-message">No subscriptions yet.</p>
+      </div>
+    );
   }
   
   // Sort subscriptions by dueDate in ascending order (1-31)
@@ -33,16 +37,18 @@ export function SubscriptionList() {
   const sortedSubscriptions = [...subscriptions].sort((a, b) => a.dueDate - b.dueDate);
   
   return (
-    <ul className={styles.list} data-testid="subscription-list">
-      {sortedSubscriptions.map(sub => {
-        // Validate subscription ID is present for React key reconciliation
-        if (!sub?.id) {
-          console.warn('SubscriptionRow rendered without valid ID:', sub);
-        }
-        return (
-          <SubscriptionRow key={sub.id} subscription={sub} />
-        );
-      })}
-    </ul>
+    <div className={styles.listContainer} aria-label="Subscriptions">
+      <ul className={styles.list} data-testid="subscription-list">
+        {sortedSubscriptions.map(sub => {
+          // Validate subscription ID is present for React key reconciliation
+          if (!sub?.id) {
+            console.warn('SubscriptionRow rendered without valid ID:', sub);
+          }
+          return (
+            <SubscriptionRow key={sub.id} subscription={sub} />
+          );
+        })}
+      </ul>
+    </div>
   );
 }
