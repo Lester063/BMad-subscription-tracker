@@ -67,9 +67,9 @@ development_status:
 
   # ========== EPIC 4: Edit & Delete Subscriptions ==========
   epic-4: in-progress
-  4-1-implement-edit-subscription-workflow: review
+  4-1-implement-edit-subscription-workflow: done
   4-2-implement-delete-subscription-workflow: backlog
-  4-3-update-timestamps-on-edit: review
+  4-3-update-timestamps-on-edit: done
   4-4-add-success-error-messages-toast-notifications: backlog
   epic-4-retrospective: optional
 
