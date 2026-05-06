@@ -1,107 +1,79 @@
-<testsuites id="" name="" tests="15" failures="0" skipped="0" errors="0" time="7.69700500000082">
-<testsuite name="story-3-5-keyboard-accessibility.spec.ts" timestamp="2026-05-05T02:57:53.384Z" hostname="chromium" tests="15" failures="0" skipped="0" time="21.256" errors="0">
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] TAB moves focus to Name input field (first focusable element)" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.904">
+<testsuites id="" name="" tests="11" failures="0" skipped="0" errors="0" time="7.435453000000212">
+<testsuite name="stories-4.1-4.3-edit-and-timestamps.spec.ts" timestamp="2026-05-06T03:12:20.856Z" hostname="chromium" tests="11" failures="0" skipped="0" time="21.952" errors="0">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-01] AC1: Edit button opens form with pre-populated values" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.374">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-59726-ld-first-focusable-element--chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-e275e-m-with-pre-populated-values-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] TAB navigates: Name → Cost → DueDate → Add → Clear" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.705">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-02] AC2: Submit button shows &quot;Update Subscription&quot; in edit mode" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.401">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-129f0-ost-→-DueDate-→-Add-→-Clear-chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-bd7ad-e-Subscription-in-edit-mode-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Shift+Tab navigates backward through form fields" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.519">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-03] AC3: Cancel button exits edit mode and clears form" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.508">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-5aa4b-ackward-through-form-fields-chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-3577f-s-edit-mode-and-clears-form-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] TAB wraps from last element to first (focus cycling)" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.501">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-04] AC4: Same name allowed in edit mode (fuzzy match excludes current)" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.522">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-43cc0-ent-to-first-focus-cycling--chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-fa7ed-zzy-match-excludes-current--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] TAB skips invisible/hidden elements" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.408">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-05] AC5 + AC6: Real-time list update + success toast" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="5.387">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-8ed71-s-invisible-hidden-elements-chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-1a00c-e-list-update-success-toast-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] TAB 20+ times consecutively - no element traps focus" classname="story-3-5-keyboard-accessibility.spec.ts" time="3.575">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-06] AC8: Keyboard navigation (Tab, Enter, Escape)" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.171">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-4fcfb-ly---no-element-traps-focus-chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-45ecb-avigation-Tab-Enter-Escape--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Escape key does not interfere with form" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.079">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-07] AC9: Accessibility - WCAG 2.1 Level A compliance" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.811">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-f9ae2-oes-not-interfere-with-form-chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-4636b-WCAG-2-1-Level-A-compliance-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Focus indicator visible on Name input (outline ≥ 2px)" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.001">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-08] AC10: Error handling - validation errors display inline" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.755">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-db778-n-Name-input-outline-≥-2px--chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-a2a93-ation-errors-display-inline-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Focus indicator visible on all interactive elements" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.266">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.3-01] AC1 + AC2 (4.3): Timestamps - createdAt immutable, updatedAt updated" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.784">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-ba664-on-all-interactive-elements-chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-e4982-immutable-updatedAt-updated-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Focus outline has sufficient contrast (≥ 3:1 WCAG Level A)" classname="story-3-5-keyboard-accessibility.spec.ts" time="0.869">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.3-02] AC3 (4.3): Timestamps persist through page reload" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="2.077">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-532ba-ontrast-≥-3-1-WCAG-Level-A--chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-9ede6-persist-through-page-reload-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Add subscription, then list renders with proper semantics" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.021">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.3-03] Multiple edits create incrementing timestamps" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="2.162">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-0d1a1-nders-with-proper-semantics-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] List uses semantic HTML (&lt;ul&gt; and &lt;li&gt; elements)" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.088">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-95df1-ic-HTML-ul-and-li-elements--chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P1] Tab order respects DOM order (no tabindex &gt; 0)" classname="story-3-5-keyboard-accessibility.spec.ts" time="0.968">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-f7046-ts-DOM-order-no-tabindex-0--chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P1] Success message has aria-live attribute for announcements" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.04">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-788ea-attribute-for-announcements-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P1] Enter key submits form (alternative to clicking button)" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.312">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-f2798-rnative-to-clicking-button--chromium\trace.zip]]
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-b9705-ate-incrementing-timestamps-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>

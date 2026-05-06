@@ -141,6 +141,17 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
     const { control, handleSubmit, reset, formState } = form;
     const { errors } = formState;
 
+    // Update form when initialValues change (Story 4.1: Edit mode)
+    React.useEffect(() => {
+      if (initialValues) {
+        reset({
+          name: initialValues.name || '',
+          cost: initialValues.cost || 0,
+          dueDate: initialValues.dueDate?.toString() || '',
+        });
+      }
+    }, [initialValues, reset]);
+
     // Expose reset function to parent component via ref (Story 3.3)
     useImperativeHandle(ref, () => ({
       reset: () => reset(),
@@ -151,7 +162,12 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
     };
 
     const handleReset = (): void => {
-      reset();
+      // Reset form to empty values (Story 4.1: AC3)
+      reset({
+        name: '',
+        cost: 0,
+        dueDate: '',
+      });
       if (onCancel) {
         onCancel();
       }
