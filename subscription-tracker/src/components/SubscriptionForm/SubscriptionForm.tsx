@@ -15,7 +15,7 @@
  */
 
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { useForm, Controller, type UseFormReturn } from 'react-hook-form';
+import { useForm, Controller, type UseFormReturn, type FieldError } from 'react-hook-form';
 import styles from './SubscriptionForm.module.css';
 
 /**
@@ -61,6 +61,13 @@ export interface SubscriptionFormProps {
    * For Edit mode: closes edit modal or returns to list view
    */
   onCancel?: () => void;
+
+  /**
+   * Error message to display (optional).
+   * Submission errors are passed from parent and displayed to user.
+   * Story 4.1 AC10: Form displays user-friendly error messages
+   */
+  errorMessage?: string;
 
   /**
    * Disable form submission (optional).
@@ -116,12 +123,14 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
       initialValues,
       submitButtonLabel = 'Add Subscription',
       onCancel,
+      errorMessage,
       disabled = false,
     },
     ref
   ) => {
     // React Hook Form setup
     const form: UseFormReturn<FormData> = useForm<FormData>({
+      mode: 'onChange',
       defaultValues: {
         name: initialValues?.name || '',
         cost: initialValues?.cost || 0,
@@ -129,7 +138,8 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
       },
     });
 
-    const { control, handleSubmit, reset } = form;
+    const { control, handleSubmit, reset, formState } = form;
+    const { errors } = formState;
 
     // Expose reset function to parent component via ref (Story 3.3)
     useImperativeHandle(ref, () => ({
@@ -147,12 +157,33 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
       }
     };
 
+  // Helper to render field error message (Story 4.1 AC10)
+  const renderFieldError = (error: FieldError | undefined): React.ReactNode => {
+    if (!error) return null;
+    if (error.type === 'required') return 'This field is required';
+    if (error.type === 'maxLength') return 'Name must be 100 characters or less';
+    if (error.type === 'min') return 'Cost must be greater than or equal to 0';
+    return error.message || 'Invalid input';
+  };
+
   return (
     <form 
       onSubmit={handleSubmit(handleFormSubmit)} 
       className={styles.SubscriptionForm}
       aria-label="Subscription form"
     >
+      {/* Submission Error Display (Story 4.1 AC10) */}
+      {errorMessage && (
+        <div 
+          className={styles.SubscriptionForm__error}
+          role="alert"
+          aria-live="polite"
+          data-testid="form-error-message"
+        >
+          {errorMessage}
+        </div>
+      )}
+
       {/* Name Field */}
       <div className={styles.SubscriptionForm__field}>
         <label 
@@ -164,20 +195,31 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
         <Controller
           name="name"
           control={control}
-          rules={{ required: true, maxLength: 100 }}
+          rules={{ required: 'Subscription name is required', maxLength: 100 }}
           render={({ field }) => (
             <input
               id="subscription-name"
               type="text"
               placeholder="e.g., Netflix"
               maxLength={100}
-              className={styles.SubscriptionForm__input}
+              className={`${styles.SubscriptionForm__input} ${errors.name ? styles['SubscriptionForm__input--error'] : ''}`}
               data-testid="subscription-name-input"
               aria-required="true"
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? 'name-error' : undefined}
               {...field}
             />
           )}
         />
+        {errors.name && (
+          <span 
+            id="name-error" 
+            className={styles.SubscriptionForm__field_error}
+            role="alert"
+          >
+            {renderFieldError(errors.name)}
+          </span>
+        )}
       </div>
 
       {/* Cost Field */}
@@ -191,7 +233,7 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
         <Controller
           name="cost"
           control={control}
-          rules={{ required: true, min: 0 }}
+          rules={{ required: 'Monthly cost is required', min: 0 }}
           render={({ field }) => (
             <input
               id="subscription-cost"
@@ -199,9 +241,11 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
               placeholder="e.g., 15.99"
               step="0.01"
               min="0"
-              className={styles.SubscriptionForm__input}
+              className={`${styles.SubscriptionForm__input} ${errors.cost ? styles['SubscriptionForm__input--error'] : ''}`}
               data-testid="subscription-cost-input"
               aria-required="true"
+              aria-invalid={!!errors.cost}
+              aria-describedby={errors.cost ? 'cost-error' : undefined}
               {...field}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 field.onChange(parseFloat(e.target.value) || 0);
@@ -209,6 +253,15 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
             />
           )}
         />
+        {errors.cost && (
+          <span 
+            id="cost-error" 
+            className={styles.SubscriptionForm__field_error}
+            role="alert"
+          >
+            {renderFieldError(errors.cost)}
+          </span>
+        )}
       </div>
 
       {/* Due Date Field */}
@@ -222,19 +275,30 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
         <Controller
           name="dueDate"
           control={control}
-          rules={{ required: true }}
+          rules={{ required: 'Due date is required' }}
           render={({ field }) => (
             <input
               id="subscription-due-date"
               type="text"
               placeholder="e.g., 15"
-              className={styles.SubscriptionForm__input}
+              className={`${styles.SubscriptionForm__input} ${errors.dueDate ? styles['SubscriptionForm__input--error'] : ''}`}
               data-testid="subscription-duedate-input"
               aria-required="true"
+              aria-invalid={!!errors.dueDate}
+              aria-describedby={errors.dueDate ? 'duedate-error' : undefined}
               {...field}
             />
           )}
         />
+        {errors.dueDate && (
+          <span 
+            id="duedate-error" 
+            className={styles.SubscriptionForm__field_error}
+            role="alert"
+          >
+            {renderFieldError(errors.dueDate)}
+          </span>
+        )}
       </div>
 
       {/* Action Buttons */}
@@ -247,14 +311,15 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
         >
           {submitButtonLabel}
         </button>
+        {/* Story 4.1: AC3 - Show Cancel button only in edit mode, Clear in add mode */}
         <button
           type="button"
           onClick={handleReset}
           disabled={disabled}
-          data-testid="clear-button"
+          data-testid={onCancel ? "cancel-button" : "clear-button"}
           className={`${styles.SubscriptionForm__button} ${styles['SubscriptionForm__button--secondary']}`}
         >
-          Clear
+          {onCancel ? 'Cancel' : 'Clear'}
         </button>
       </div>
     </form>

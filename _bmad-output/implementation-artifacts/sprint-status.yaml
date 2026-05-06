@@ -32,7 +32,7 @@
 # - Stories should pass through 'review' before 'done'
 
 generated: 2026-04-28
-last_updated: '2026-05-05 [story-4-1-ready]'
+last_updated: '2026-05-06 [story-4-1-and-4-3-review-fixes]'
 project: BMad-subscription-tracker
 project_key: NOKEY
 tracking_system: file-system
@@ -67,9 +67,9 @@ development_status:
 
   # ========== EPIC 4: Edit & Delete Subscriptions ==========
   epic-4: in-progress
-  4-1-implement-edit-subscription-workflow: ready-for-dev
+  4-1-implement-edit-subscription-workflow: review
   4-2-implement-delete-subscription-workflow: backlog
-  4-3-update-timestamps-on-edit: ready-for-dev
+  4-3-update-timestamps-on-edit: review
   4-4-add-success-error-messages-toast-notifications: backlog
   epic-4-retrospective: optional
 
