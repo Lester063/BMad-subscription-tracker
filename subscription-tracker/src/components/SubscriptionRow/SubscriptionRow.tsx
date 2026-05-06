@@ -21,6 +21,12 @@ import styles from './SubscriptionRow.module.css';
 export interface SubscriptionRowProps {
   /** The subscription data to display */
   subscription: Subscription;
+  /**
+   * Callback when Edit button is clicked (Story 4.1)
+   * Receives the subscription object to edit
+   * Optional for backwards compatibility
+   */
+  onEditClick?: (subscription: Subscription) => void;
 }
 
 /**
@@ -61,10 +67,10 @@ function formatDueDate(day: number): string {
 /**
  * Renders a single subscription row with name, cost, due date, and action buttons
  * 
- * @param props - Component props including subscription data
+ * @param props - Component props including subscription data and edit callback
  * @returns {JSX.Element|null} Subscription row element or null if validation fails
  */
-function SubscriptionRowComponent({ subscription }: SubscriptionRowProps): ReactElement | null {
+function SubscriptionRowComponent({ subscription, onEditClick }: SubscriptionRowProps): ReactElement | null {
   // Defensive checks for required subscription properties
   if (!subscription || typeof subscription !== 'object') {
     console.error('Invalid subscription prop: received', subscription);
@@ -103,13 +109,23 @@ function SubscriptionRowComponent({ subscription }: SubscriptionRowProps): React
   
   const dueDateFormatted = formatDueDate(dueDate);
 
+  /**
+   * Handle Edit button click (Story 4.1: AC1)
+   * Calls the onEditClick callback with the subscription object
+   */
+  const handleEditClick = (): void => {
+    if (onEditClick) {
+      onEditClick(subscription);
+    }
+  };
+
   return (
     <li className={styles.row} data-testid="subscription-item">
       <span className={styles.name} data-testid="subscription-name">{name}</span>
       <span className={styles.cost} data-testid="subscription-cost">{costFormatted}</span>
       <span className={styles.dueDate} data-testid="subscription-duedate">Due: {dueDateFormatted}</span>
       <div className={styles.actions}>
-        <button className={styles.editBtn} type="button" aria-label={`Edit ${name}`}>Edit</button>
+        <button className={styles.editBtn} type="button" onClick={handleEditClick} aria-label={`Edit ${name}`}>Edit</button>
         <button className={styles.deleteBtn} type="button" aria-label={`Delete ${name}`}>Delete</button>
       </div>
     </li>

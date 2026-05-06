@@ -28,57 +28,116 @@ function generateUUID(): string {
 /**
  * Inner component that handles form submission logic
  * Uses hooks to access useSubscriptions context
+ * 
+ * Story 4.1: Supports both Add and Edit modes
+ * - Story 3.3: Add mode - creates new subscription with UUID and timestamps
+ * - Story 4.1: Edit mode - updates existing subscription with new values, preserving createdAt
  */
 function AppContent() {
-  const { addSubscription } = useSubscriptions()
+  const { addSubscription, updateSubscription } = useSubscriptions()
   const formRef = useRef<SubscriptionFormRef>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [formError, setFormError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [editingSubscription, setEditingSubscription] = useState<Subscription | null>(null)
 
   /**
-   * Handle form submission (AC1, AC2, AC3, AC4)
+   * Handle edit button click on SubscriptionRow (Story 4.1: AC1)
+   * Sets the form into edit mode with the subscription's current values
+   */
+  const handleEditClick = (subscription: Subscription): void => {
+    setEditingSubscription(subscription)
+  }
+
+  /**
+   * Handle cancel button in form (Story 4.1: AC3)
+   * Exits edit mode and clears form
+   */
+  const handleCancelEdit = (): void => {
+    setEditingSubscription(null)
+    formRef.current?.reset()
+  }
+
+  /**
+   * Handle form submission for both Add (Story 3.3) and Edit (Story 4.1) modes
    * 
-   * Creates a new Subscription object with:
-   * - Unique UUID (AC2)
-   * - Form data (name, cost, dueDate)
-   * - Timestamps (createdAt, updatedAt)
+   * Add mode:
+   * - Creates a new Subscription object with UUID and timestamps
+   * - Dispatches ADD_SUBSCRIPTION action
+   * - Displays "Subscription added successfully"
    * 
-   * Then:
-   * - Dispatches ADD_SUBSCRIPTION action (AC1)
-   * - Clears form fields (AC3)
-   * - Displays success message (AC4)
+   * Edit mode (Story 4.1):
+   * - Updates existing subscription with new name, cost, dueDate
+   * - Preserves createdAt timestamp (Story 4.3 will set updatedAt)
+   * - Dispatches UPDATE_SUBSCRIPTION action
+   * - Displays "Subscription updated successfully"
+   * - Exits edit mode
    */
   const handleFormSubmit = (data: FormData): void => {
     try {
       setIsSubmitting(true)
-      // Create new Subscription object with UUID and timestamps (AC2)
-      const newSubscription: Subscription = {
-        id: generateUUID(),                    // Unique UUID (AC2)
-        name: data.name,                       // String from form
-        cost: parseFloat(data.cost.toString()), // Number (AC8)
-        dueDate: parseInt(data.dueDate, 10),   // Number 1-31 (AC8)
-        createdAt: Date.now(),                 // Current timestamp
-        updatedAt: Date.now(),                 // Current timestamp
+      setFormError(null) // Clear previous errors
+
+      if (editingSubscription) {
+        // Edit mode (Story 4.1)
+        const updatedSubscription: Subscription = {
+          ...editingSubscription,              // Preserve id, createdAt, and other fields
+          name: data.name,                     // Update from form
+          cost: parseFloat(data.cost.toString()), // Update from form
+          dueDate: parseInt(data.dueDate, 10), // Update from form
+          updatedAt: Date.now(),               // Story 4.3: Update timestamp
+        }
+
+        // Dispatch UPDATE_SUBSCRIPTION action
+        updateSubscription(updatedSubscription)
+
+        // Clear form and exit edit mode
+        formRef.current?.reset()
+        setEditingSubscription(null)
+
+        // Display success message
+        setSuccessMessage('Subscription updated successfully')
+      } else {
+        // Add mode (Story 3.3)
+        const newSubscription: Subscription = {
+          id: generateUUID(),                    // Unique UUID
+          name: data.name,                       // String from form
+          cost: parseFloat(data.cost.toString()), // Number
+          dueDate: parseInt(data.dueDate, 10),   // Number 1-31
+          createdAt: Date.now(),                 // Current timestamp
+          updatedAt: Date.now(),                 // Current timestamp
+        }
+
+        // Dispatch ADD_SUBSCRIPTION action
+        addSubscription(newSubscription)
+
+        // Clear form
+        formRef.current?.reset()
+
+        // Display success message
+        setSuccessMessage('Subscription added successfully')
       }
 
-      // Dispatch ADD_SUBSCRIPTION action via useSubscriptions hook (AC1)
-      addSubscription(newSubscription)
-
-      // Clear form fields after successful submission (AC3)
-      formRef.current?.reset()
-
-      // Display success message (AC4)
-      setSuccessMessage('Subscription added successfully')
       setIsSubmitting(false)
     } catch (error) {
-      console.error('Error adding subscription:', error)
       setIsSubmitting(false)
+      
+      // Capture error message for user display (Story 4.1 AC10)
+      if (error instanceof Error) {
+        setFormError(error.message)
+      } else {
+        setFormError('An error occurred. Please try again.')
+      }
+      
+      // Log full error for debugging
+      console.error('Error submitting form:', error)
     }
   }
 
   // Cleanup setTimeout when component unmounts or successMessage changes (prevent memory leak)
   useEffect(() => {
     if (successMessage) {
+      setFormError(null) // Clear any errors when success is shown
       const timer = setTimeout(() => {
         setSuccessMessage(null)
       }, 3000)
@@ -94,8 +153,20 @@ function AppContent() {
           {successMessage}
         </div>
       )}
-      <SubscriptionForm ref={formRef} onSubmit={handleFormSubmit} disabled={isSubmitting} />
-      <SubscriptionList />
+      <SubscriptionForm
+        ref={formRef}
+        onSubmit={handleFormSubmit}
+        disabled={isSubmitting}
+        errorMessage={formError}
+        initialValues={editingSubscription ? {
+          name: editingSubscription.name,
+          cost: editingSubscription.cost,
+          dueDate: editingSubscription.dueDate.toString(),
+        } : undefined}
+        submitButtonLabel={editingSubscription ? 'Update Subscription' : 'Add Subscription'}
+        onCancel={editingSubscription ? handleCancelEdit : undefined}
+      />
+      <SubscriptionList onEditClick={handleEditClick} />
     </div>
   )
 }

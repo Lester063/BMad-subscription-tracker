@@ -116,6 +116,36 @@
   border-color: var(--text-secondary);
 }
 
+/* Block__Element: Error Message (Submission Error) */
+.SubscriptionForm__error {
+  padding: var(--space-sm) var(--space-md);
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: var(--radius-sm);
+  color: #c00;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-sm);
+}
+
+/* Block__Element--Modifier: Input Error State */
+.SubscriptionForm__input--error {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.SubscriptionForm__input--error:focus {
+  outline-color: #dc2626;
+  border-color: #dc2626;
+}
+
+/* Block__Element: Field Error Message */
+.SubscriptionForm__field_error {
+  font-size: var(--text-sm);
+  color: #dc2626;
+  margin-top: var(--space-xs);
+  display: block;
+}
+
 /* Responsive: Stack buttons on mobile */
 @media (max-width: 640px) {
   .SubscriptionForm {
