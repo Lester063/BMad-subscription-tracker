@@ -1,53 +1,102 @@
 ---
-workflowStatus: 'in-progress'
+workflowStatus: 'complete'
 totalSteps: 5
-stepsCompleted: ['step-01-detect-mode', 'step-02-load-context']
-lastStep: 'step-02-load-context'
-nextStep: 'step-03-risk-and-testability'
-lastSaved: '2026-05-04T00:00:00Z'
-inputDocuments:
-  - story: '3-4-implement-subscription-display-with-real-time-updates.md'
-  - context: 'project-context.md'
-  - knowledgeFragments:
-      - 'risk-governance.md'
-      - 'probability-impact.md'
-      - 'test-levels-framework.md'
-      - 'test-priorities-matrix.md'
-      - 'network-first.md'
-workflowMode: 'EPIC-LEVEL'
-scope: 'Story 3.4: Implement Subscription Display with Real-Time Updates'
+stepsCompleted: ['step-01-detect-mode', 'step-02-load-context', 'step-03-risk-and-testability', 'step-04-coverage-plan', 'step-05-generate-output']
+workflowMode: 'epic-level'
+epicScope: 'Stories 4.1 + 4.3'
+lastStep: 'step-05-generate-output'
+nextStep: null
+lastSaved: '2026-05-05'
 ---
 
-# Test Design Workflow: Story 3.4
+# Test Design Workflow: Stories 4.1 & 4.3
 
-## Step 1: Mode Detection ✅
-
-**Mode Selected:** EPIC-LEVEL  
-**Rationale:** Story-level spec with explicit AC (AC1–AC4), architecture context available, single story scope  
-
-**Prerequisites Confirmed:**
-- ✅ Epic + story docs with AC1–AC4 defined
-- ✅ Architecture context (project-context.md)  
-- ✅ Tech stack clarity (React, TypeScript, Vitest, Playwright)
+**Workflow:** Test Design for Edit Subscription Workflow + Timestamp Updates  
+**Status:** ✅ COMPLETE  
+**Started:** 2026-05-05  
+**Completed:** 2026-05-05
 
 ---
 
-## Step 2: Load Context ✅
+## Execution Summary
 
-**Configuration Loaded:**
-- `tea_use_playwright_utils`: true
-- `tea_browser_automation`: auto
-- `test_framework`: Vitest (unit), Playwright (E2E)
-- `detected_stack`: frontend (React 19+, TypeScript 6.0+)
+### Mode: Epic-Level Test Design
 
-**Project Artifacts Loaded:**
-- Story 3.4 spec with 4 acceptance criteria (AC1–AC4)
-- Project context with architecture patterns (useReducer + React Context, localStorage persistence)
-- Prerequisite stories (3.1, 3.2, 3.3) completed status
-- Tech stack: React Hook Form, CSS Modules, BEM naming
+**Selection:** Stories 4.1 (Edit Subscription Workflow) + 4.3 (Update Timestamps on Edit)
 
-**Knowledge Base Fragments Loaded (Core Tier):**
-- ✅ `risk-governance.md` — Risk scoring matrix, mitigation workflows, gate decisions
+**Prerequisites Verified:**
+- ✅ Story 4.1: Complete acceptance criteria (10 ACs)
+- ✅ Story 4.3: Complete acceptance criteria (8 ACs)
+- ✅ Architecture context: Loaded from project-context.md
+- ✅ Testing framework: Vitest + React Testing Library (proven)
+- ✅ Test patterns: Established from Stories 3.1, 3.2, 3.5
+
+---
+
+## Step Completion Log
+
+### ✅ Step 1: Mode Detection
+**Time:** ~5 min | **Status:** PASS
+
+- Mode: Epic-Level (two dependent stories with full AC context)
+- Rationale: Stories 4.1 and 4.3 have complete acceptance criteria, architecture context, and dependencies
+
+### ✅ Step 2: Load Context
+**Time:** ~10 min | **Status:** PASS
+
+**Configuration:**
+- Stack Type: Frontend (React 19 + Vite)
+- Browser Automation: Playwright available
+- Test Framework: Vitest + React Testing Library
+- User: Lester Tuazon
+
+**Artifacts Loaded:**
+- Story 4.1: Edit Subscription Workflow (10 ACs)
+- Story 4.3: Update Timestamps on Edit (8 ACs)
+- Project context: State management, localStorage, form patterns
+- Tech stack: React Hook Form v7+, Context API, CSS Modules
+
+### ✅ Step 3: Testability & Risk Assessment
+**Time:** ~20 min | **Status:** PASS
+
+**High-Risk Items Identified (Score 6):**
+1. Edit mode state isolation (Mitigation: separate unit test blocks)
+2. Fuzzy duplicate exclusion logic (Mitigation: 3 explicit AC4 tests)
+
+**Medium-Risk Items (Score 3–5):** 3 items (all mitigatable)  
+**Low-Risk Items (Score ≤ 2):** 4 items (covered by patterns)
+
+**Overall Rating:** 🟢 GREEN — Proceed to implementation
+
+### ✅ Step 4: Coverage Planning
+**Time:** ~30 min | **Status:** PASS
+
+**Test Pyramid:**
+- Unit: 50–55% (21 tests)
+- Integration: 35–40% (15 tests)
+- E2E: 5–10% (smoke tests)
+
+**Test Cases Generated:** 36 total
+- Story 4.1: 24 test cases (unit + integration)
+- Story 4.3: 12 test cases (unit + integration)
+
+**Coverage Target:** 95%+ unit + integration
+
+### ✅ Step 5: Generate Output
+**Time:** ~15 min | **Status:** PASS
+
+**Primary Output:** `test-design-4.1-4.3.md` (comprehensive test plan)
+
+**Sections Generated:**
+- Executive summary
+- Risk assessment matrix (8 items scored)
+- Testability assessment
+- Test pyramid distribution
+- AC-to-test matrix (18 ACs → 36 tests)
+- Test implementation roadmap
+- Definition of Done checklist
+- Mitigation strategy
+- Test pattern examples
 - ✅ `probability-impact.md` — 1-3 probability/impact scale, automated classification
 - ✅ `test-levels-framework.md` — Unit vs Integration vs E2E decision rules
 - ✅ `test-priorities-matrix.md` — P0–P3 priority levels and coverage targets
