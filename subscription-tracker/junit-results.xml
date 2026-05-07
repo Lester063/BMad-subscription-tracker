@@ -1,79 +1,10 @@
-<testsuites id="" name="" tests="11" failures="0" skipped="0" errors="0" time="7.435453000000212">
-<testsuite name="stories-4.1-4.3-edit-and-timestamps.spec.ts" timestamp="2026-05-06T03:12:20.856Z" hostname="chromium" tests="11" failures="0" skipped="0" time="21.952" errors="0">
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-01] AC1: Edit button opens form with pre-populated values" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.374">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="2.5092750000000015">
+<testsuite name="story-3-4-sorting.spec.ts" timestamp="2026-05-06T06:51:30.257Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.039" errors="0">
+<testcase name="Story 3.4 - P0: Real-Time Display Critical Path › P0-E2E-001: Should display new subscription immediately after add (&lt; 100ms)" classname="story-3-4-sorting.spec.ts" time="1.039">
 <system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-e275e-m-with-pre-populated-values-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-02] AC2: Submit button shows &quot;Update Subscription&quot; in edit mode" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.401">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-bd7ad-e-Subscription-in-edit-mode-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-03] AC3: Cancel button exits edit mode and clears form" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.508">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-3577f-s-edit-mode-and-clears-form-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-04] AC4: Same name allowed in edit mode (fuzzy match excludes current)" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.522">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-fa7ed-zzy-match-excludes-current--chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-05] AC5 + AC6: Real-time list update + success toast" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="5.387">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-1a00c-e-list-update-success-toast-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-06] AC8: Keyboard navigation (Tab, Enter, Escape)" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.171">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-45ecb-avigation-Tab-Enter-Escape--chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-07] AC9: Accessibility - WCAG 2.1 Level A compliance" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.811">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-4636b-WCAG-2-1-Level-A-compliance-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-08] AC10: Error handling - validation errors display inline" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.755">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-a2a93-ation-errors-display-inline-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.3-01] AC1 + AC2 (4.3): Timestamps - createdAt immutable, updatedAt updated" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.784">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-e4982-immutable-updatedAt-updated-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.3-02] AC3 (4.3): Timestamps persist through page reload" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="2.077">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-9ede6-persist-through-page-reload-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.3-03] Multiple edits create incrementing timestamps" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="2.162">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-b9705-ate-incrementing-timestamps-chromium\trace.zip]]
+<![CDATA[📊 Real-time update took: 135ms
+
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
