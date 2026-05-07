@@ -83,9 +83,10 @@ export interface SubscriptionFormProps {
  */
 export interface SubscriptionFormRef {
   /**
-   * Reset all form fields to their default values
+   * Reset all form fields to specified values or default values
+   * @param values - Optional form values to reset to. If not provided, resets to default values.
    */
-  reset: () => void;
+  reset: (values?: Partial<FormData>) => void;
 }
 
 /**
@@ -152,9 +153,16 @@ export const SubscriptionForm = forwardRef<SubscriptionFormRef, SubscriptionForm
       }
     }, [initialValues, reset]);
 
-    // Expose reset function to parent component via ref (Story 3.3)
+    // Expose reset function to parent component via ref (Story 3.3, Story 4.1 Missed AC)
+    // Accepts optional values to reset form to specific state (e.g., empty fields after edit mode update)
     useImperativeHandle(ref, () => ({
-      reset: () => reset(),
+      reset: (values?: Partial<FormData>) => {
+        if (values) {
+          reset(values);
+        } else {
+          reset();
+        }
+      },
     }));
 
     const handleFormSubmit = (data: FormData): void => {

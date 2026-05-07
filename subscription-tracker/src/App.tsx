@@ -37,7 +37,7 @@ function AppContent() {
   const { addSubscription, updateSubscription } = useSubscriptions()
   const formRef = useRef<SubscriptionFormRef>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
-  const [formError, setFormError] = useState<string | null>(null)
+  const [formError, setFormError] = useState<string | undefined>(undefined)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [editingSubscription, setEditingSubscription] = useState<Subscription | null>(null)
 
@@ -76,7 +76,7 @@ function AppContent() {
   const handleFormSubmit = (data: FormData): void => {
     try {
       setIsSubmitting(true)
-      setFormError(null) // Clear previous errors
+      setFormError(undefined) // Clear previous errors
 
       if (editingSubscription) {
         // Edit mode (Story 4.1)
@@ -91,8 +91,12 @@ function AppContent() {
         // Dispatch UPDATE_SUBSCRIPTION action
         updateSubscription(updatedSubscription)
 
-        // Clear form and exit edit mode
-        formRef.current?.reset()
+        // Clear form and exit edit mode (Story 4.1 Missed AC: pass explicit empty values)
+        formRef.current?.reset({
+          name: '',
+          cost: 0,
+          dueDate: '',
+        })
         setEditingSubscription(null)
 
         // Display success message
@@ -137,7 +141,7 @@ function AppContent() {
   // Cleanup setTimeout when component unmounts or successMessage changes (prevent memory leak)
   useEffect(() => {
     if (successMessage) {
-      setFormError(null) // Clear any errors when success is shown
+      setFormError(undefined) // Clear any errors when success is shown
       const timer = setTimeout(() => {
         setSuccessMessage(null)
       }, 3000)
