@@ -5,12 +5,31 @@ import { ACTIONS } from '../constants'
 import { saveSubscriptionsToStorage, loadSubscriptionsFromStorage } from '../utils/localStorageManager'
 
 /**
+ * Search and filter state for subscriptions (Story 11.1)
+ *
+ * Session-only state (NOT persisted to localStorage).
+ * Rationale: Temporary UI state; users expect filters to reset on new session.
+ * Subscriptions persist, but filter criteria do not.
+ */
+export interface SearchState {
+  /** Search text for subscription names (case-insensitive matching) */
+  searchTerm: string
+
+  /** Minimum cost filter threshold (null = no minimum) */
+  costRangeMin: number | null
+
+  /** Maximum cost filter threshold (null = no maximum) */
+  costRangeMax: number | null
+}
+
+/**
  * Subscription state shape for the context
- * Contains all subscription data and any error messages
+ * Contains all subscription data, error messages, and search/filter state
  */
 export interface SubscriptionState {
   subscriptions: Subscription[]
   error: string | null
+  searchState: SearchState
 }
 
 /**
@@ -24,14 +43,23 @@ export type SubscriptionAction =
   | { type: typeof ACTIONS.UPDATE_SUBSCRIPTION; payload: Subscription }
   | { type: typeof ACTIONS.DELETE_SUBSCRIPTION; payload: string }
   | { type: typeof ACTIONS.SET_ERROR; payload: string }
+  | { type: typeof ACTIONS.SET_SEARCH_TERM; payload: string }
+  | { type: typeof ACTIONS.SET_COST_RANGE_MIN; payload: number | null }
+  | { type: typeof ACTIONS.SET_COST_RANGE_MAX; payload: number | null }
+  | { type: typeof ACTIONS.RESET_ALL_FILTERS }
 
 /**
  * Initial state for SubscriptionContext
- * Empty subscriptions array and no error
+ * Empty subscriptions array, no error, and no search/filter criteria active
  */
 const initialState: SubscriptionState = {
   subscriptions: [],
   error: null,
+  searchState: {
+    searchTerm: '',
+    costRangeMin: null,
+    costRangeMax: null,
+  },
 }
 
 /**
@@ -40,10 +68,15 @@ const initialState: SubscriptionState = {
  * Handles all subscription actions: SET_SUBSCRIPTIONS, ADD_SUBSCRIPTION,
  * UPDATE_SUBSCRIPTION, DELETE_SUBSCRIPTION, SET_ERROR.
  *
+ * Also handles search/filter actions: SET_SEARCH_TERM, SET_COST_RANGE_MIN,
+ * SET_COST_RANGE_MAX, RESET_ALL_FILTERS (Story 11.1).
+ *
  * Side effects: ADD/UPDATE/DELETE actions call saveSubscriptionsToStorage()
  * to persist changes. Error handling is graceful (no crashes if save fails).
  *
  * All state transformations are immutable (using spread operators and map/filter).
+ *
+ * Search/filter actions have NO localStorage side effects (session-only state).
  *
  * @param state - Current SubscriptionState
  * @param action - Action with type from ACTIONS constant and optional payload
@@ -78,6 +111,7 @@ export function subscriptionReducer(
       return {
         subscriptions: payload as Subscription[],
         error: null,
+        searchState: state.searchState, // Preserve search/filter state
       }
     }
 
@@ -103,6 +137,7 @@ export function subscriptionReducer(
       return {
         subscriptions: updated,
         error: null,
+        searchState: state.searchState, // Preserve search/filter state
       }
     }
 
@@ -130,6 +165,7 @@ export function subscriptionReducer(
       return {
         subscriptions: updated,
         error: null,
+        searchState: state.searchState, // Preserve search/filter state
       }
     }
 
@@ -157,6 +193,7 @@ export function subscriptionReducer(
       return {
         subscriptions: updated,
         error: null,
+        searchState: state.searchState, // Preserve search/filter state
       }
     }
 
@@ -165,6 +202,53 @@ export function subscriptionReducer(
       return {
         ...state,
         error: action.payload as string,
+        searchState: state.searchState, // Preserve search/filter state
+      }
+
+    // ========================================================================
+    // NEW: Search/Filter Actions (Story 11.1) — Session-only state
+    // ========================================================================
+    // No localStorage persistence for these actions (temporary UI state)
+
+    // Update search term for name filtering
+    case ACTIONS.SET_SEARCH_TERM:
+      return {
+        ...state,
+        searchState: {
+          ...state.searchState,
+          searchTerm: action.payload as string,
+        },
+      }
+
+    // Update minimum cost range filter
+    case ACTIONS.SET_COST_RANGE_MIN:
+      return {
+        ...state,
+        searchState: {
+          ...state.searchState,
+          costRangeMin: action.payload as number | null,
+        },
+      }
+
+    // Update maximum cost range filter
+    case ACTIONS.SET_COST_RANGE_MAX:
+      return {
+        ...state,
+        searchState: {
+          ...state.searchState,
+          costRangeMax: action.payload as number | null,
+        },
+      }
+
+    // Reset all search/filter criteria to defaults
+    case ACTIONS.RESET_ALL_FILTERS:
+      return {
+        ...state,
+        searchState: {
+          searchTerm: '',
+          costRangeMin: null,
+          costRangeMax: null,
+        },
       }
 
     // Invalid action type - return state unchanged
