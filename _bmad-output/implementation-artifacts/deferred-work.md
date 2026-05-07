@@ -1,5 +1,19 @@
 # Deferred Work Items
 
+## Deferred from: code review of 11-2-create-searchbar-component (2026-05-07)
+
+### Unicode emoji grapheme cluster handling
+**Source:** Code Review Edge Case Hunter  
+**Severity:** Low  
+**Context:** JavaScript `.length` counts UTF-16 code units, not visual graphemes. Multi-codepoint emoji (e.g., 👨‍👩‍👧‍👦) render as single character but have `.length > 1`. Clear button visibility check (`searchState.searchTerm.length > 0`) works correctly, but the internal representation is semantically imprecise.  
+**Note:** This is a JavaScript language limitation. Fixing would require grapheme cluster library dependency. Functionally correct (button appears when user has typed anything). Deferred to future Unicode handling audit when internationalization is reviewed across the project.
+
+### Password manager autoComplete bypass
+**Source:** Code Review Edge Case Hunter  
+**Severity:** Low  
+**Context:** Some password managers (1Password, Dashlane) ignore `autoComplete="off"` and inject password suggestions into search input anyway. Users could accidentally see passwords if they use autofill in the search field.  
+**Note:** This is browser/extension behavior, not a component defect. Component correctly sets `autoComplete="off"`. Cannot be fixed in HTML/CSS/JS. Deferred to future security audit if password manager injection becomes a reported issue.
+
 ## Deferred from: code review of 2-4-create-usesubscriptions-custom-hook (2026-04-29)
 
 ### Cost value validation (NaN/Infinity/negative)
