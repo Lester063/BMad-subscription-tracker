@@ -1198,6 +1198,506 @@ npm run dev
 
 3. **Testing & Polish** (Stories 8+)
    - Add unit tests for utilities and hooks
+
+---
+
+## Search & Filter Architecture
+
+**Feature Context:** Feature `001-subscription-search` adds search by name and filter by cost range to help users find subscriptions in larger lists.
+
+### Decision: Search/Filter State in SubscriptionContext
+
+**Technology:**
+- Extend existing SubscriptionContext with search state
+- No new libraries required (client-side filtering only)
+- TypeScript for type-safe filter parameters
+
+**Approach:**
+- Add `searchState` object to SubscriptionContext:
+  ```typescript
+  {
+    searchTerm: string                    // User search text
+    costRangeMin: number | null          // Min cost filter (null = no filter)
+    costRangeMax: number | null          // Max cost filter (null = no filter)
+    filterPeriod: 'week' | 'month' | 'all'  // Existing due date filter
+  }
+  ```
+- Add reducer actions: `SET_SEARCH_TERM`, `SET_COST_RANGE_MIN`, `SET_COST_RANGE_MAX`, `RESET_FILTERS`
+- Search/filter state persists in session (not in localStorage)
+- Computed filtered results: `const filtered = useFilteredSubscriptions()`
+
+**Rationale:**
+- Keeps search state separate from core data (clean concerns)
+- Session-level filtering improves UX (filter resets on page reload)
+- Filtering is client-side only (no server, no queries)
+- Familiar Redux pattern already established with useReducer
+- Easy to test (pure filter logic)
+
+**Affects:**
+- SubscriptionContext reducer (4 new action types)
+- Dashboard component (passes search state to children)
+- New custom hook: `useFilteredSubscriptions()` (applies all filters)
+
+### Decision: Client-Side Filtering Performance Strategy
+
+**Technology:**
+- Pure JavaScript Array methods (filter, includes, some)
+- React useMemo hook for memoized filter computation
+- No virtual scrolling needed for MVP (<100 subscriptions typical)
+
+**Approach:**
+
+**Search by Name:**
+```typescript
+// Case-insensitive substring match
+const nameMatches = subscription.name.toLowerCase().includes(searchTerm.toLowerCase())
+```
+
+**Filter by Cost Range:**
+```typescript
+// Inclusive range check
+const costInRange = 
+  (costMin === null || subscription.cost >= costMin) &&
+  (costMax === null || subscription.cost <= costMax)
+```
+
+**Combined AND Logic:**
+```typescript
+const filtered = subscriptions.filter(sub => {
+  const nameMatch = !searchTerm || 
+    sub.name.toLowerCase().includes(searchTerm.toLowerCase())
+  
+  const costMatch = 
+    (costMin === null || sub.cost >= costMin) &&
+    (costMax === null || sub.cost <= costMax)
+  
+  const dueDateMatch = matchesDueDateFilter(sub.dueDate, filterPeriod)
+  
+  return nameMatch && costMatch && dueDateMatch  // All criteria must match
+})
+```
+
+**Memoization in Hook:**
+```typescript
+export function useFilteredSubscriptions() {
+  const { subscriptions, searchState } = useSubscriptions()
+  
+  return useMemo(() => {
+    // Filter computation only runs when subscriptions or searchState changes
+    return applyFilters(subscriptions, searchState)
+  }, [subscriptions, searchState])
+}
+```
+
+**Rationale:**
+- Client-side filtering has zero latency (all data already loaded)
+- useMemo prevents unnecessary re-computations
+- Simple filter logic is more maintainable than complex algorithms
+- Scales fine for MVP scope (<100 subscriptions, filters execute in <10ms)
+- No external dependencies (pure JavaScript)
+
+**Affects:**
+- New hook: `useFilteredSubscriptions.ts`
+- New utility: `filterSubscriptions.ts` (pure filter logic)
+- SubscriptionList component receives filtered results
+
+### Decision: Component Composition for Search/Filter UI
+
+**Technology:**
+- New components: SearchBar, CostRangeFilter
+- Reuse existing SubscriptionList (consumes filtered data)
+- Place controls in Dashboard above list
+
+**Approach:**
+
+**File Structure Addition:**
+```
+src/components/
+  SearchBar/
+    SearchBar.tsx
+    SearchBar.module.css
+  
+  CostRangeFilter/
+    CostRangeFilter.tsx
+    CostRangeFilter.module.css
+  
+  FilterControls/                         # Existing - add cost filter here
+    FilterControls.tsx
+    FilterControls.module.css
+```
+
+**Component Responsibilities:**
+
+**SearchBar:**
+- Single text input for subscription name search
+- Calls `setSearchTerm` on input change (real-time)
+- Clear button to reset search
+- No validation (any text is valid input)
+
+**CostRangeFilter:**
+- Two numeric inputs: "Min Cost" and "Max Cost"
+- Update on input change (real-time)
+- Clear button to reset range
+- Input validation: min/max numeric bounds, min ≤ max
+
+**Dashboard Layout:**
+```
+┌─────────────────────────────────────┐
+│         Header / Logo               │
+├─────────────────────────────────────┤
+│  SearchBar [Netflix ▢]              │  ← New
+├─────────────────────────────────────┤
+│  FilterControls (Due Date)          │  ← Existing
+│  CostRangeFilter [5.00 - 20.00 ▢]  │  ← New
+├─────────────────────────────────────┤
+│  CostSummary: $125.50               │
+├─────────────────────────────────────┤
+│  SubscriptionList (filtered)         │
+│  - Netflix $15.99                    │
+│  - Hulu $7.99                        │
+│  [Add New]                           │
+├─────────────────────────────────────┤
+│         Footer                       │
+└─────────────────────────────────────┘
+```
+
+**Rationale:**
+- Separates search UI from list (single responsibility)
+- Reuses existing SubscriptionList (no changes needed)
+- SearchBar and CostRangeFilter are stateless (dispatch to context)
+- Dashboard orchestrates all controls and data flow
+- Clear visual hierarchy for user
+
+**Affects:**
+- Add SearchBar component
+- Add CostRangeFilter component
+- Update Dashboard component to include new controls
+- Update FilterControls component to include cost range
+
+### Decision: Reducer Actions for Search/Filter
+
+**Technology:**
+- Extend existing ACTIONS constant
+- TypeScript for action payload types
+
+**New Actions:**
+
+```typescript
+export const ACTIONS = {
+  // ... existing actions ...
+  SET_SEARCH_TERM: 'SET_SEARCH_TERM',
+  SET_COST_RANGE_MIN: 'SET_COST_RANGE_MIN',
+  SET_COST_RANGE_MAX: 'SET_COST_RANGE_MAX',
+  RESET_ALL_FILTERS: 'RESET_ALL_FILTERS',
+}
+
+// Action payloads
+interface SetSearchTermAction {
+  type: typeof ACTIONS.SET_SEARCH_TERM
+  payload: string  // Search text (empty string = no search)
+}
+
+interface SetCostRangeAction {
+  type: typeof ACTIONS.SET_COST_RANGE_MIN | ACTIONS.SET_COST_RANGE_MAX
+  payload: number | null  // Cost value or null to clear
+}
+
+interface ResetFiltersAction {
+  type: typeof ACTIONS.RESET_ALL_FILTERS
+  payload: undefined
+}
+```
+
+**Reducer Implementation:**
+
+```typescript
+// In reducer function
+case ACTIONS.SET_SEARCH_TERM:
+  return {
+    ...state,
+    searchState: {
+      ...state.searchState,
+      searchTerm: action.payload
+    }
+  }
+
+case ACTIONS.SET_COST_RANGE_MIN:
+  return {
+    ...state,
+    searchState: {
+      ...state.searchState,
+      costRangeMin: action.payload
+    }
+  }
+
+case ACTIONS.SET_COST_RANGE_MAX:
+  return {
+    ...state,
+    searchState: {
+      ...state.searchState,
+      costRangeMax: action.payload
+    }
+  }
+
+case ACTIONS.RESET_ALL_FILTERS:
+  return {
+    ...state,
+    searchState: {
+      searchTerm: '',
+      costRangeMin: null,
+      costRangeMax: null,
+      filterPeriod: 'all'
+    }
+  }
+```
+
+**Rationale:**
+- Actions keep with existing pattern (UPPER_SNAKE_CASE)
+- Each filter gets its own action (granular control)
+- RESET_ALL_FILTERS clears all criteria at once
+- Payload types are simple (string, number, null)
+- Easy to dispatch from SearchBar and CostRangeFilter
+
+**Affects:**
+- actions.ts type definitions (4 new action types)
+- SubscriptionContext reducer case statements
+- Hook signatures for filter setters
+
+### Decision: Data Flow for Search/Filter
+
+**Complete Data Journey:**
+
+```
+User Types in SearchBar → setSearchTerm(text) → DISPATCH SET_SEARCH_TERM → 
+REDUCER updates searchState → CONTEXT updated → useFilteredSubscriptions() runs →
+applyFilters(subscriptions, searchState) → memoized result → SubscriptionList 
+re-renders with filtered data
+
+User Adjusts Cost Range → setCostRangeMin(value) → DISPATCH SET_COST_RANGE_MIN →
+REDUCER updates searchState → CONTEXT updated → useFilteredSubscriptions() runs →
+applyFilters computes new filtered set → SubscriptionList re-renders
+
+Combined: ALL filters applied together (AND logic) → only subscriptions matching
+name AND cost AND due date criteria are displayed
+```
+
+**Edge Cases Handled:**
+
+| Scenario | Behavior | Implementation |
+|----------|----------|----------------|
+| No search text | Show all matching cost/date | `searchTerm === ''` skips name check |
+| No cost filter | Show all matching name/date | `costMin/Max === null` skips cost check |
+| No matches found | Display "No Results" message | SubscriptionList checks `filtered.length === 0` |
+| Invalid cost range (min > max) | Ignore max filter temporarily | UI prevents submission (validation) |
+| Empty subscription list | Display "No subscriptions" message | Check before any filtering |
+| Search with spaces | Trim whitespace before compare | `.trim()` on search input |
+| Cost filter with decimals | Store as-is, compare precisely | Use numeric comparison operators |
+
+**Rationale:**
+- All three filters (name, cost, due date) work together seamlessly
+- No filter required (optional filtering)
+- Edge cases don't break app (graceful handling)
+- Real-time updates (no "Apply" button needed)
+- Performance optimized (memoization prevents unnecessary work)
+
+**Affects:**
+- useFilteredSubscriptions hook (applies all filters)
+- filterSubscriptions utility (filter logic)
+- SubscriptionList component (checks for empty results)
+- SearchBar and CostRangeFilter (dispatch actions)
+
+### Integration with Existing Architecture
+
+**Changes to Existing Files:**
+
+**SubscriptionContext.tsx:**
+- Add `searchState` to state interface
+- Add 4 new reducer case statements
+- Initialize `searchState` in initial state
+
+**useSubscriptions.ts Hook:**
+- Add getters: `setSearchTerm()`, `setCostRangeMin()`, `setCostRangeMax()`, `resetAllFilters()`
+- New hook: `useFilteredSubscriptions()` (separate file, calls existing hook)
+
+**Dashboard.tsx:**
+- Import SearchBar, CostRangeFilter
+- Add new controls above SubscriptionList
+- Pass filtered results to SubscriptionList
+
+**SubscriptionList.tsx:**
+- Receive filtered subscriptions from parent (no changes to filtering logic)
+- Add "No Results" message when `filtered.length === 0`
+
+**New Files Created:**
+
+```
+src/hooks/
+  useFilteredSubscriptions.ts       # Memoized filter computation
+
+src/utils/
+  filterSubscriptions.ts            # Pure filter logic (testable)
+
+src/components/
+  SearchBar/
+    SearchBar.tsx
+    SearchBar.module.css
+  
+  CostRangeFilter/
+    CostRangeFilter.tsx
+    CostRangeFilter.module.css
+```
+
+**No Breaking Changes:**
+- All existing components continue to work unchanged
+- Existing reducer and context extended (not modified)
+- localStorage unchanged (filters are session-level)
+- Performance unaffected (memoization applied)
+
+### Naming Conventions for Search/Filter
+
+**Component Names (PascalCase):**
+```
+SearchBar.tsx
+CostRangeFilter.tsx
+```
+
+**Hook Names (camelCase):**
+```
+useFilteredSubscriptions.ts
+```
+
+**Utility Names (camelCase):**
+```
+filterSubscriptions.ts
+```
+
+**Action Types (UPPER_SNAKE_CASE):**
+```
+SET_SEARCH_TERM
+SET_COST_RANGE_MIN
+SET_COST_RANGE_MAX
+RESET_ALL_FILTERS
+```
+
+**State Fields (camelCase):**
+```
+searchTerm
+costRangeMin
+costRangeMax
+filterPeriod        # Existing
+```
+
+**Function Names (camelCase):**
+```
+setSearchTerm()
+setCostRangeMin()
+setCostRangeMax()
+resetAllFilters()
+applyFilters()
+matchesNameCriteria()
+matchesCostCriteria()
+```
+
+**CSS Class Names (BEM):**
+```
+.searchBar
+.searchBar__input
+.searchBar__input--focused
+.searchBar__button
+
+.costRangeFilter
+.costRangeFilter__container
+.costRangeFilter__input
+.costRangeFilter__input--error
+```
+
+### Testing Strategy for Search/Filter
+
+**Unit Tests:**
+
+```typescript
+// filterSubscriptions.test.ts
+describe('filterSubscriptions', () => {
+  test('filters by name (case-insensitive)', () => {
+    const subs = [{ name: 'Netflix' }, { name: 'Hulu' }]
+    const result = filterSubscriptions(subs, { searchTerm: 'net' })
+    expect(result).toHaveLength(1)
+  })
+
+  test('filters by cost range', () => {
+    const subs = [{ cost: 10 }, { cost: 15 }, { cost: 20 }]
+    const result = filterSubscriptions(subs, { costMin: 12, costMax: 18 })
+    expect(result).toHaveLength(1)  // Only $15
+  })
+
+  test('applies all filters together (AND logic)', () => {
+    const result = filterSubscriptions(subs, {
+      searchTerm: 'stream',
+      costMin: 5,
+      costMax: 15
+    })
+    // Only subscriptions matching ALL criteria
+  })
+
+  test('returns all when no filters applied', () => {
+    const result = filterSubscriptions(subs, {})
+    expect(result).toEqual(subs)
+  })
+})
+```
+
+**Component Tests (E2E):**
+- User enters search text → list updates
+- User adjusts cost range → list updates
+- User clears filter → all subscriptions return
+- Combined filters work together
+- "No Results" message displays when appropriate
+
+### Performance Characteristics
+
+**Filter Execution Time (typical <10ms):**
+- 50 subscriptions: <2ms
+- 100 subscriptions: <5ms
+- 500 subscriptions (future scale): <20ms
+
+**Memory Usage:**
+- Search state: ~100 bytes (strings, numbers)
+- Filtered array: Similar size to original (no duplication)
+- Memoization cache: Single copy of filtered results
+
+**Re-render Optimization:**
+- Only SubscriptionList and CostSummary re-render on filter change
+- SearchBar and CostRangeFilter don't re-render (controlled inputs)
+- useCallback on handler functions to prevent prop changes
+
+### Edge Case Handling
+
+**Invalid Cost Range (min > max):**
+- SearchBar validates input: `min <= max` check
+- If user enters invalid range, show error message
+- Don't apply filter until range is valid
+
+**Special Characters in Search:**
+- No sanitization needed (searching existing subscription names)
+- Allowed characters: letters, numbers, spaces, common symbols
+- Example: "Disney+" searches for "Disney+"
+
+**Leading/Trailing Spaces:**
+- Trim whitespace: `searchTerm.trim()`
+- " Netflix " matches "Netflix"
+- Improves UX for accidental spaces
+
+**Cost with Decimal Places:**
+- Accept up to 2 decimal places (currency standard)
+- Input validation: `^\\d+(\\.\\d{1,2})?$`
+- Display with 2 decimals: `$15.99`
+
+**Very Long Subscription Names:**
+- Search still works (no length limit on search term)
+- Display truncates with ellipsis in UI
+- Full name accessible in edit view
+
+---
    - Add integration tests for CRUD flows
    - Add styling and responsive design
    - Test error handling scenarios
