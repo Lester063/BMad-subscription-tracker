@@ -1,0 +1,209 @@
+/**
+ * SearchBar Component Stylesheet
+ *
+ * BEM Naming Convention:
+ * - Block: .searchBar (container)
+ * - Elements: .searchBar__label, .searchBar__input, .searchBar__button
+ * - Modifiers: .searchBar__input--focused, .searchBar__button--hover
+ *
+ * All colors and spacing use CSS variables from src/styles/variables.css
+ */
+
+/* ========== BLOCK: searchBar (Container) ========== */
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ========== ELEMENT: searchBar__label ========== */
+.searchBar__label {
+  display: none; /* Hidden from visual rendering, but associated with input for screen readers */
+}
+
+/* ========== ELEMENT: searchBar__input ========== */
+.searchBar__input {
+  flex: 1;
+  min-width: 200px;
+  padding: var(--space-sm) 12px;
+  font-size: var(--text-base);
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-normal);
+  color: var(--text);
+  background-color: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  transition: all 150ms ease-in-out;
+}
+
+/* Input placeholder styling */
+.searchBar__input::placeholder {
+  color: var(--text-muted);
+  font-size: var(--text-base);
+}
+
+/* Input focus state */
+.searchBar__input:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+}
+
+/* Input hover state */
+.searchBar__input:hover:not(:focus) {
+  border-color: var(--text-secondary);
+}
+
+/* Input disabled state */
+.searchBar__input:disabled {
+  background-color: var(--bg-secondary);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  border-color: var(--border-light);
+}
+
+
+
+/* ========== ELEMENT: searchBar__button (Clear Button) ========== */
+.searchBar__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  min-width: 32px;
+  height: 32px;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--error);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: all 150ms ease-in-out;
+  user-select: none;
+}
+
+/* Clear button hover state */
+.searchBar__button:hover {
+  background-color: var(--border-light);
+  border-color: var(--error);
+  color: var(--error);
+}
+
+/* Clear button focus state */
+.searchBar__button:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+  background-color: var(--border-light);
+}
+
+/* Clear button active/pressed state */
+.searchBar__button:active {
+  background-color: var(--error);
+  color: var(--bg);
+  transform: scale(0.98);
+}
+
+/* Clear button disabled state */
+.searchBar__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Clear button keyboard focus visible */
+.searchBar__button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Mobile (320px - 640px) */
+@media (max-width: 640px) {
+  .searchBar {
+    gap: var(--space-xs);
+  }
+
+  .searchBar__input {
+    min-width: auto; /* Allow input to shrink on mobile */
+    width: 100%;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
+  .searchBar__button {
+    flex-shrink: 0;
+    min-width: 32px;
+  }
+}
+
+/* Tablet (640px - 1024px) */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .searchBar__input {
+    min-width: 250px;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .searchBar {
+    gap: var(--space-md);
+  }
+
+  .searchBar__input {
+    min-width: 300px;
+  }
+}
+
+/* ========== DARK MODE SUPPORT ========== */
+
+@media (prefers-color-scheme: dark) {
+  .searchBar__input:hover:not(:focus) {
+    border-color: var(--text-secondary);
+  }
+
+  .searchBar__button:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-color: var(--error);
+  }
+
+  .searchBar__button:active {
+    background-color: var(--error);
+    color: var(--bg);
+  }
+}
+
+/* ========== ACCESSIBILITY: High Contrast Mode ========== */
+
+@media (prefers-contrast: more) {
+  .searchBar__input {
+    border-width: 3px;
+  }
+
+  .searchBar__input:focus {
+    outline-width: 3px;
+    outline-offset: 3px;
+  }
+
+  .searchBar__button {
+    border-width: 2px;
+  }
+
+  .searchBar__button:focus {
+    outline-width: 3px;
+    outline-offset: 3px;
+  }
+}
+
+/* ========== ACCESSIBILITY: Reduced Motion ========== */
+
+@media (prefers-reduced-motion: reduce) {
+  .searchBar__input,
+  .searchBar__button {
+    transition: none;
+  }
+}
