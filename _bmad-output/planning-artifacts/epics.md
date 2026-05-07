@@ -10,9 +10,9 @@ epicDesignDate: '2026-04-28'
 storyCreationDate: '2026-04-28'
 finalValidationDate: '2026-04-28'
 extractionStatus: 'all-stories-created-and-validated'
-epicApprovalNotes: 'User approved 10-epic structure with Playwright + TEA integrated quality approach'
-totalStoriesCreated: 52
-totalEpics: 10
+epicApprovalNotes: 'User approved 10-epic structure with Playwright + TEA integrated quality approach. Epic 11 (Search & Filter) added for feature 001-subscription-search'
+totalStoriesCreated: 58
+totalEpics: 11
 qualityApproach: 'Playwright + TEA (Test-Driven Architecture) integrated throughout'
 readyForFinalValidation: false
 workflowStatus: 'COMPLETE - Ready for Development'
@@ -38,6 +38,9 @@ This document provides the complete epic and story breakdown for BMad-subscripti
 - **FR5:** Dashboard displays total monthly subscription cost prominently and updates in real-time
 - **FR6:** Users can filter subscriptions by due date period (This Week, This Month, All Periods)
 - **FR7:** System prevents duplicate subscriptions using fuzzy name matching (>85% threshold) with user-friendly messaging
+- **FR8:** Users can search subscriptions by name with real-time filtering
+- **FR9:** Users can filter subscriptions by cost range (minimum and maximum)
+- **FR10:** Users can combine search and cost filter simultaneously (AND logic)
 
 ### Non-Functional Requirements
 
@@ -82,6 +85,7 @@ This document provides the complete epic and story breakdown for BMad-subscripti
 | **Epic 8: Error Handling & Resilience** | — | NFR4, NFR9, NFR10 |
 | **Epic 9: Styling & UX Polish** | — | NFR8, NFR9 |
 | **Epic 10: Testing & Accessibility Audit** | — | NFR9 |
+| **Epic 11: Search & Filter Subscriptions** | FR8, FR9, FR10 | NFR2, NFR3, NFR8 |
 
 ---
 
@@ -97,6 +101,7 @@ This document provides the complete epic and story breakdown for BMad-subscripti
 **Epic 8:** Error Handling & Resilience — Wrap all operations with try-catch and user-friendly messaging  
 **Epic 9:** Styling & UX Polish — Apply CSS Modules, BEM naming, responsive design, and visual polish  
 **Epic 10:** Testing & Accessibility Audit — Create test suite and verify WCAG 2.1 Level A compliance  
+**Epic 11:** Search & Filter Subscriptions — Implement name search, cost range filter, and combined filtering with real-time updates  
 
 ---
 
@@ -832,6 +837,374 @@ Implement Playwright test suite with TDD/TEA methodology for every story; verify
 - **Then** the operation is retried automatically
 - **When** error is non-recoverable
 - **Then** no "Retry" button shown
+
+---
+
+### Epic 11: Search & Filter Subscriptions
+
+Implement search by name and cost range filtering to help users find subscriptions in larger lists. All filters work together with real-time updates and support combined criteria (AND logic).
+
+#### Story 11.1: Extend SubscriptionContext with Search/Filter State
+
+**As a** developer,
+**I want** to extend SubscriptionContext with search and filter state management,
+**So that** search/filter criteria persist during user session and update all components in real-time.
+
+**Acceptance Criteria:**
+
+- **Given** I have SubscriptionContext with existing state
+- **When** I extend it
+- **Then** the context includes new `searchState` object with:
+  - `searchTerm: string` (search text, empty string = no search)
+  - `costRangeMin: number | null` (min cost filter, null = no minimum)
+  - `costRangeMax: number | null` (max cost filter, null = no maximum)
+- **And** I add 4 new reducer actions:
+  - `SET_SEARCH_TERM` — updates search term
+  - `SET_COST_RANGE_MIN` — updates minimum cost
+  - `SET_COST_RANGE_MAX` — updates maximum cost
+  - `RESET_ALL_FILTERS` — clears all filters
+- **And** the reducer handles all 4 new action types without errors
+- **And** search/filter state does NOT persist to localStorage (session-only)
+
+---
+
+#### Story 11.2: Create SearchBar Component
+
+**As a** developer,
+**I want** to create a SearchBar component for name search,
+**So that** users have a UI control to search subscriptions by name.
+
+**Acceptance Criteria:**
+
+- **Given** I need a search input component
+- **When** I create `src/components/SearchBar/SearchBar.tsx`
+- **Then** it renders:
+  - Text input field with placeholder "Search by subscription name"
+  - Clear button (✕) that appears when input has text
+- **And** it dispatches `SET_SEARCH_TERM` on input change (real-time, no debounce)
+- **And** it calls `resetSearchTerm()` when clear button clicked
+- **And** I create `SearchBar.module.css` with BEM naming:
+  - `.searchBar`
+  - `.searchBar__input`
+  - `.searchBar__input--focused`
+  - `.searchBar__button`
+
+**Acceptance Criteria (Accessibility):**
+
+- **Given** I am using the search bar
+- **When** I interact with it
+- **Then** the input has proper `<label>` associated (or aria-label)
+- **And** I can Tab to it and clear button
+- **And** screen readers announce "Search subscriptions"
+
+---
+
+#### Story 11.3: Create CostRangeFilter Component
+
+**As a** developer,
+**I want** to create a CostRangeFilter component for cost range filtering,
+**So that** users can filter subscriptions by minimum and maximum cost.
+
+**Acceptance Criteria:**
+
+- **Given** I need a cost range filter component
+- **When** I create `src/components/CostRangeFilter/CostRangeFilter.tsx`
+- **Then** it renders:
+  - Two number input fields: "Min Cost" and "Max Cost"
+  - Clear button to reset both filters
+  - Fields labeled with currency symbols ($)
+- **And** it dispatches `SET_COST_RANGE_MIN` and `SET_COST_RANGE_MAX` on input change
+- **And** it validates that min ≤ max (shows error if invalid)
+- **And** I create `CostRangeFilter.module.css` with BEM naming:
+  - `.costRangeFilter`
+  - `.costRangeFilter__container`
+  - `.costRangeFilter__input`
+  - `.costRangeFilter__input--error`
+
+**Acceptance Criteria (Validation):**
+
+- **Given** user enters invalid range (min > max)
+- **When** they blur or change either field
+- **Then** an error message appears: "Minimum cost must be less than or equal to maximum"
+- **And** the input field gets error styling (red border)
+- **And** filters don't apply until range is valid
+
+---
+
+#### Story 11.4: Create useFilteredSubscriptions Custom Hook
+
+**As a** developer,
+**I want** to create a `useFilteredSubscriptions()` hook with memoized filter computation,
+**So that** filtered results are computed efficiently and components always get current filtered data.
+
+**Acceptance Criteria:**
+
+- **Given** I have search state in SubscriptionContext
+- **When** I create `src/hooks/useFilteredSubscriptions.ts`
+- **Then** it:
+  - Uses `useMemo` to memoize filter computation
+  - Applies all three filters together (name AND cost AND due date)
+  - Returns filtered subscription array
+  - Only recomputes when subscriptions or searchState changes
+- **And** it exports `useFilteredSubscriptions()` hook
+- **And** the hook calls `applyFilters()` utility
+
+**Acceptance Criteria (Performance):**
+
+- **Given** 100 subscriptions
+- **When** I type in search box
+- **Then** filtered results update in < 10ms
+- **And** memoization prevents unnecessary re-renders
+
+---
+
+#### Story 11.5: Create filterSubscriptions Utility Function
+
+**As a** developer,
+**I want** to create a pure `filterSubscriptions()` utility function,
+**So that** the filter logic is testable, reusable, and separate from React.
+
+**Acceptance Criteria:**
+
+- **Given** I need filtering logic
+- **When** I create `src/utils/filterSubscriptions.ts`
+- **Then** it exports `applyFilters(subscriptions, searchState)` function that:
+  - Applies name search (case-insensitive substring match)
+  - Applies cost range filter (inclusive, min ≤ cost ≤ max)
+  - Applies due date filter (existing period logic)
+  - Combines all filters with AND logic (all criteria must match)
+  - Returns filtered array
+
+**Acceptance Criteria (Filter Logic):**
+
+- **Given** search term "netflix"
+- **When** I filter
+- **Then** subscriptions containing "netflix" (case-insensitive) are shown
+- **And** partial matches work ("net" matches "Netflix")
+
+- **Given** cost range $10 - $20
+- **When** I filter
+- **Then** only subscriptions with cost ≥ $10 AND ≤ $20 are shown
+- **And** boundary values are included ($10.00 and $20.00 shown)
+
+- **Given** search "Streaming" AND cost $5-$15
+- **When** I filter
+- **Then** only subscriptions matching BOTH criteria are shown
+- **And** subscriptions matching one criterion but not the other are hidden
+
+**Acceptance Criteria (Edge Cases):**
+
+- **Given** empty search term
+- **When** I filter
+- **Then** all subscriptions matching cost/date filters are shown
+
+- **Given** no filters applied
+- **When** I filter
+- **Then** all subscriptions are returned
+
+- **Given** filters that match zero subscriptions
+- **When** I filter
+- **Then** empty array is returned
+
+- **Given** search with leading/trailing spaces (" Netflix ")
+- **When** I filter
+- **Then** spaces are trimmed and search still works
+
+---
+
+#### Story 11.6: Integrate SearchBar & CostRangeFilter into Dashboard
+
+**As a** developer,
+**I want** to add SearchBar and CostRangeFilter to the Dashboard layout,
+**So that** users can access search and filter controls prominently.
+
+**Acceptance Criteria:**
+
+- **Given** I have Dashboard component
+- **When** I update it
+- **Then** the layout now includes:
+  1. CostSummary (existing)
+  2. SearchBar (new) — below cost summary
+  3. FilterControls (existing due date filter)
+  4. CostRangeFilter (new) — next to FilterControls
+  5. SubscriptionList (existing) — receives filtered results
+
+- **And** I pass `filtered` results (from `useFilteredSubscriptions()`) to SubscriptionList
+- **And** I add "No Results" message when `filtered.length === 0`:
+  ```
+  No subscriptions found matching your search and filters.
+  Try adjusting your search term or cost range.
+  ```
+- **And** visual hierarchy is clear: Search controls → Filters → List
+
+**Acceptance Criteria (Real-Time Updates):**
+
+- **Given** user types in SearchBar
+- **When** they type each character
+- **Then** list updates immediately (< 100ms)
+- **And** cost summary updates only if filtered results changed
+
+- **Given** user adjusts CostRangeFilter
+- **When** they change min or max
+- **Then** list updates immediately
+- **And** "No Results" message appears if no matches
+
+---
+
+#### Story 11.7: Add Clear All Filters Button
+
+**As a** user,
+**I want** to clear all search and filter criteria at once,
+**So that** I can quickly reset to the full subscription list.
+
+**Acceptance Criteria:**
+
+- **Given** I have search or filters applied
+- **When** I click "Clear All Filters" button
+- **Then** all filters are reset:
+  - Search term cleared
+  - Cost range cleared
+  - Due date filter reset to "All Periods"
+- **And** the full subscription list displays
+- **And** all input fields are cleared
+
+**Acceptance Criteria (Visibility):**
+
+- **Given** no filters applied
+- **When** I view the dashboard
+- **Then** "Clear All Filters" button is hidden or disabled
+
+- **Given** any filter applied
+- **When** I view the dashboard
+- **Then** "Clear All Filters" button is visible and enabled
+
+---
+
+#### Story 11.8: Add Test Coverage for Search & Filter
+
+**As a** developer,
+**I want** to create comprehensive tests for search and filter functionality,
+**So that** the feature works correctly and edge cases are handled.
+
+**Acceptance Criteria:**
+
+- **Given** I have filterSubscriptions utility
+- **When** I create `tests/utils/filterSubscriptions.test.ts`
+- **Then** it includes tests for:
+  - Name search (case-insensitive)
+  - Name search (partial match)
+  - Cost range filter (inclusive bounds)
+  - Invalid cost range (min > max)
+  - Combined filters (AND logic)
+  - Empty results
+  - No filters applied
+
+- **Given** I have useFilteredSubscriptions hook
+- **When** I create `tests/hooks/useFilteredSubscriptions.test.ts`
+- **Then** it includes tests for:
+  - Hook returns filtered results
+  - Memoization prevents unnecessary recomputes
+  - Hook updates when subscriptions change
+  - Hook updates when searchState changes
+
+- **Given** I have SearchBar component
+- **When** I create `tests/components/SearchBar.test.tsx`
+- **Then** it includes tests for:
+  - User can type in search input
+  - Clear button appears when input has text
+  - Clear button clears search
+  - Search dispatches SET_SEARCH_TERM action
+  - Keyboard navigation works (Tab, Shift+Tab)
+
+- **Given** I have CostRangeFilter component
+- **When** I create `tests/components/CostRangeFilter.test.tsx`
+- **Then** it includes tests for:
+  - User can enter min/max cost
+  - Error message appears when min > max
+  - Clear button resets both fields
+  - Dispatches SET_COST_RANGE_MIN/MAX actions
+  - Input validation works
+
+**Acceptance Criteria (E2E Tests with Playwright):**
+
+- **Given** I have SubscriptionList populated
+- **When** I create `tests/e2e/search-filter.spec.ts`
+- **Then** it includes tests for:
+  - User searches for subscription by name
+  - User filters by cost range
+  - User applies search AND filter together
+  - User clears all filters
+  - "No Results" message displays when appropriate
+  - Combined filters work correctly (AND logic)
+
+**Acceptance Criteria (Visibility):**
+
+- **Given** no filters applied
+- **When** I view the dashboard
+- **Then** "Clear All Filters" button is hidden or disabled
+
+- **Given** any filter applied
+- **When** I view the dashboard
+- **Then** "Clear All Filters" button is visible and enabled
+
+---
+
+#### Story 11.8: Add Test Coverage for Search & Filter
+
+**As a** developer,
+**I want** to create comprehensive tests for search and filter functionality,
+**So that** the feature works correctly and edge cases are handled.
+
+**Acceptance Criteria:**
+
+- **Given** I have filterSubscriptions utility
+- **When** I create `tests/utils/filterSubscriptions.test.ts`
+- **Then** it includes tests for:
+  - Name search (case-insensitive)
+  - Name search (partial match)
+  - Cost range filter (inclusive bounds)
+  - Invalid cost range (min > max)
+  - Combined filters (AND logic)
+  - Empty results
+  - No filters applied
+
+- **Given** I have useFilteredSubscriptions hook
+- **When** I create `tests/hooks/useFilteredSubscriptions.test.ts`
+- **Then** it includes tests for:
+  - Hook returns filtered results
+  - Memoization prevents unnecessary recomputes
+  - Hook updates when subscriptions change
+  - Hook updates when searchState changes
+
+- **Given** I have SearchBar component
+- **When** I create `tests/components/SearchBar.test.tsx`
+- **Then** it includes tests for:
+  - User can type in search input
+  - Clear button appears when input has text
+  - Clear button clears search
+  - Search dispatches SET_SEARCH_TERM action
+  - Keyboard navigation works (Tab, Shift+Tab)
+
+- **Given** I have CostRangeFilter component
+- **When** I create `tests/components/CostRangeFilter.test.tsx`
+- **Then** it includes tests for:
+  - User can enter min/max cost
+  - Error message appears when min > max
+  - Clear button resets both fields
+  - Dispatches SET_COST_RANGE_MIN/MAX actions
+  - Input validation works
+
+**Acceptance Criteria (E2E Tests with Playwright):**
+
+- **Given** I have SubscriptionList populated
+- **When** I create `tests/e2e/search-filter.spec.ts`
+- **Then** it includes tests for:
+  - User searches for subscription by name
+  - User filters by cost range
+  - User applies search AND filter together
+  - User clears all filters
+  - "No Results" message displays when appropriate
+  - Combined filters work correctly (AND logic)
 
 ---
 

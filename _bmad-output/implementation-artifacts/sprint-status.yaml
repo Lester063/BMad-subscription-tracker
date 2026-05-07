@@ -32,7 +32,7 @@
 # - Stories should pass through 'review' before 'done'
 
 generated: 2026-04-28
-last_updated: '2026-05-06 [story-4-1-and-4-3-review-fixes]'
+last_updated: '2026-05-07 [epic-11-added-search-filter]'
 project: BMad-subscription-tracker
 project_key: NOKEY
 tracking_system: file-system
@@ -130,3 +130,15 @@ development_status:
   10-6-create-ci-cd-test-execution-pipeline: backlog
   10-7-create-test-documentation-best-practices: backlog
   epic-10-retrospective: optional
+
+  # ========== EPIC 11: Search & Filter Subscriptions ==========
+  epic-11: backlog
+  11-1-extend-subscriptioncontext-with-search-filter-state: backlog
+  11-2-create-searchbar-component: backlog
+  11-3-create-costrangefilter-component: backlog
+  11-4-create-usefilteredsubscriptions-custom-hook: backlog
+  11-5-create-filtersubscriptions-utility-function: backlog
+  11-6-integrate-searchbar-costrangefilter-into-dashboard: backlog
+  11-7-add-clear-all-filters-button: backlog
+  11-8-add-test-coverage-for-search-filter: backlog
+  epic-11-retrospective: optional
