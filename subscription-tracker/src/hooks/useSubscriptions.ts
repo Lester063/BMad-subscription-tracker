@@ -1,5 +1,5 @@
 import { useContext, useCallback, useMemo } from 'react';
-import { SubscriptionContext } from '../context/SubscriptionContext';
+import { SubscriptionContext, type SearchState } from '../context/SubscriptionContext';
 import type { Subscription } from '../types/subscription';
 import { ACTIONS } from '../constants';
 
@@ -22,6 +22,16 @@ export interface UseSubscriptionsReturn {
   setError: (message: string) => void;
   /** Computed total cost of all subscriptions */
   totalCost: number;
+  /** Search and filter state (Story 11.1) */
+  searchState: SearchState;
+  /** Update search term for name filtering (Story 11.1) */
+  setSearchTerm: (term: string) => void;
+  /** Update minimum cost range filter (Story 11.1) */
+  setCostRangeMin: (min: number | null) => void;
+  /** Update maximum cost range filter (Story 11.1) */
+  setCostRangeMax: (max: number | null) => void;
+  /** Reset all search/filter criteria to defaults (Story 11.1) */
+  resetAllFilters: () => void;
 }
 
 /**
@@ -135,6 +145,74 @@ export function useSubscriptions(): UseSubscriptionsReturn {
   );
 
   /**
+   * Dispatcher for updating search term filter (Story 11.1)
+   * Dispatches SET_SEARCH_TERM action for name-based filtering
+   */
+  const setSearchTerm = useCallback(
+    (term: string) => {
+      try {
+        dispatch({
+          type: ACTIONS.SET_SEARCH_TERM,
+          payload: term,
+        });
+      } catch (error) {
+        console.error('Error dispatching SET_SEARCH_TERM:', error);
+      }
+    },
+    [dispatch]
+  );
+
+  /**
+   * Dispatcher for updating minimum cost range filter (Story 11.1)
+   * Dispatches SET_COST_RANGE_MIN action; null removes the minimum filter
+   */
+  const setCostRangeMin = useCallback(
+    (min: number | null) => {
+      try {
+        dispatch({
+          type: ACTIONS.SET_COST_RANGE_MIN,
+          payload: min,
+        });
+      } catch (error) {
+        console.error('Error dispatching SET_COST_RANGE_MIN:', error);
+      }
+    },
+    [dispatch]
+  );
+
+  /**
+   * Dispatcher for updating maximum cost range filter (Story 11.1)
+   * Dispatches SET_COST_RANGE_MAX action; null removes the maximum filter
+   */
+  const setCostRangeMax = useCallback(
+    (max: number | null) => {
+      try {
+        dispatch({
+          type: ACTIONS.SET_COST_RANGE_MAX,
+          payload: max,
+        });
+      } catch (error) {
+        console.error('Error dispatching SET_COST_RANGE_MAX:', error);
+      }
+    },
+    [dispatch]
+  );
+
+  /**
+   * Dispatcher for resetting all search/filter criteria (Story 11.1)
+   * Dispatches RESET_ALL_FILTERS action to clear search term and cost ranges
+   */
+  const resetAllFilters = useCallback(() => {
+    try {
+      dispatch({
+        type: ACTIONS.RESET_ALL_FILTERS,
+      });
+    } catch (error) {
+      console.error('Error dispatching RESET_ALL_FILTERS:', error);
+    }
+  }, [dispatch]);
+
+  /**
    * Compute total cost of all subscriptions
    * Memoized to only recalculate when subscriptions array changes
    * Guards against NaN/Infinity values
@@ -158,5 +236,10 @@ export function useSubscriptions(): UseSubscriptionsReturn {
     deleteSubscription,
     setError,
     totalCost,
+    searchState: state.searchState,
+    setSearchTerm,
+    setCostRangeMin,
+    setCostRangeMax,
+    resetAllFilters,
   };
 }

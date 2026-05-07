@@ -39,6 +39,18 @@ export const ACTIONS = {
 
   /** Set error message for display (Story 8.1+) */
   SET_ERROR: 'SET_ERROR',
+
+  /** Update search term for name filtering (Story 11.1) */
+  SET_SEARCH_TERM: 'SET_SEARCH_TERM',
+
+  /** Update minimum cost range filter (Story 11.1) */
+  SET_COST_RANGE_MIN: 'SET_COST_RANGE_MIN',
+
+  /** Update maximum cost range filter (Story 11.1) */
+  SET_COST_RANGE_MAX: 'SET_COST_RANGE_MAX',
+
+  /** Reset all search/filter criteria to defaults (Story 11.1) */
+  RESET_ALL_FILTERS: 'RESET_ALL_FILTERS',
 } as const;
 
 // ============================================================================
