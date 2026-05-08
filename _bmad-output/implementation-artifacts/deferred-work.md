@@ -1,5 +1,25 @@
 # Deferred Work Items
 
+## Deferred from: Code Review of Story 11.4 — Create useFilteredSubscriptions Custom Hook (2026-05-08)
+
+### Data Validation Strategy — Upstream Responsibility
+**Source:** Code Review — Blind Hunter, Edge Case Hunter  
+**Severity:** MEDIUM  
+**Context:** Invalid cost values (negative, NaN, Infinity) and invalid ranges (min > max) pass through the filtering hook without validation or error. The hook's implementation is correct (logic properly handles these cases), but validation gaps indicate architectural issues upstream.  
+**Details:**
+- **Issue 1:** costRangeMin > costRangeMax returns silent empty results instead of validation error
+- **Issue 2:** Negative cost values pass through filters (domain validation gap)
+- **Issue 3:** NaN in cost range bounds causes incorrect filtering behavior
+
+**Recommended Action:** Prioritize data validation in future epics:
+1. **Form-level (CostRangeFilter, Story 11.3):** Validate min ≤ max before dispatch
+2. **Persistence-level (localStorage utilities, Story 2.2):** Validate subscription data structure when loading
+3. **Future audit:** Consider comprehensive schema validation in Epic 8 (Error Handling & Resilience)
+
+**Note:** Current hook implementation is sound. These deferred items reflect upstream validation gaps, not defects in the hook itself. All 8 ACs satisfied.
+
+---
+
 ## Deferred from: code review of 11-2-create-searchbar-component (2026-05-07)
 
 ### Unicode emoji grapheme cluster handling

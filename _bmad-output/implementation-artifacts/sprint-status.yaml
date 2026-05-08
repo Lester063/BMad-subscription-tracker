@@ -32,7 +32,7 @@
 # - Stories should pass through 'review' before 'done'
 
 generated: 2026-04-28
-last_updated: '2026-05-07 [story-11-3-implementation-complete]'
+last_updated: '2026-05-08 [story-11-5-complete]'
 project: BMad-subscription-tracker
 project_key: NOKEY
 tracking_system: file-system
@@ -136,8 +136,8 @@ development_status:
   11-1-extend-subscriptioncontext-with-search-filter-state: done
   11-2-create-searchbar-component: done
   11-3-create-costrangefilter-component: done
-  11-4-create-usefilteredsubscriptions-custom-hook: backlog
-  11-5-create-filtersubscriptions-utility-function: backlog
+  11-4-create-usefilteredsubscriptions-custom-hook: done
+  11-5-create-filtersubscriptions-utility-function: done
   11-6-integrate-searchbar-costrangefilter-into-dashboard: backlog
   11-7-add-clear-all-filters-button: backlog
   11-8-add-test-coverage-for-search-filter: backlog
