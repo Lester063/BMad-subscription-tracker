@@ -1,0 +1,12 @@
+# Feature: Export Subscription List as CSV
+
+# Overview
+We need to implement an export list feature. This will help the user get the list of subscription in csv file format.
+
+# Business Need
+User has a lot of subscriptions on the list, we need to implement an export subscription list as csv.
+
+# Requirements
+- Add a 'Subcription List' header at the top of the search bar
+- Add an export button on the right part of the 'Subsription List', 'Export'+Icon
+- Subscription list must be exported in csv file upon clicking the export button
