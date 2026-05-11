@@ -32,7 +32,7 @@
 # - Stories should pass through 'review' before 'done'
 
 generated: 2026-04-28
-last_updated: '2026-05-08 [story-11-6-ready]'
+last_updated: '2026-05-11 [epic-12-story-1-ready]'
 project: BMad-subscription-tracker
 project_key: NOKEY
 tracking_system: file-system
@@ -142,3 +142,9 @@ development_status:
   11-7-add-clear-all-filters-button: backlog
   11-8-add-test-coverage-for-search-filter: backlog
   epic-11-retrospective: optional
+
+  # ========== EPIC 12: Export Subscriptions as CSV ==========
+  epic-12: in-progress
+  12-1-export-dashboard-view-as-csv: ready-for-dev
+  12-2-export-filtered-searched-subscriptions: backlog
+  epic-12-retrospective: optional
