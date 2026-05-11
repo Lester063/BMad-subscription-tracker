@@ -66,7 +66,7 @@ export function SearchBar({
   }, [setSearchTerm, onClear]);
 
   return (
-    <div className={styles.searchBar}>
+    <div className={styles.searchBar} data-testid="search-bar">
       <label htmlFor="searchbar-input" className={styles['searchBar__label']}>
         Search subscriptions
       </label>

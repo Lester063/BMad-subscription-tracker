@@ -1,10 +1,37 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="2.5092750000000015">
-<testsuite name="story-3-4-sorting.spec.ts" timestamp="2026-05-06T06:51:30.257Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.039" errors="0">
-<testcase name="Story 3.4 - P0: Real-Time Display Critical Path › P0-E2E-001: Should display new subscription immediately after add (&lt; 100ms)" classname="story-3-4-sorting.spec.ts" time="1.039">
+<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="3.3503680000000022">
+<testsuite name="story-11-6-dashboard-integration.spec.ts" timestamp="2026-05-08T05:57:37.468Z" hostname="chromium" tests="5" failures="0" skipped="0" time="6.773" errors="0">
+<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-001] SearchBar renders in Dashboard layout" classname="story-11-6-dashboard-integration.spec.ts" time="1.16">
 <system-out>
-<![CDATA[📊 Real-time update took: 135ms
-
-[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\trace.zip]]
+<![CDATA[
+[[ATTACHMENT|test-results\story-11-6-dashboard-integ-194b9-renders-in-Dashboard-layout-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-002] CostRangeFilter renders in Dashboard layout" classname="story-11-6-dashboard-integration.spec.ts" time="1.323">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-11-6-dashboard-integ-a0c9d-renders-in-Dashboard-layout-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-003] Search filtering works (real-time)" classname="story-11-6-dashboard-integration.spec.ts" time="1.449">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-11-6-dashboard-integ-cad7e--filtering-works-real-time--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-004] Cost range filtering works (real-time)" classname="story-11-6-dashboard-integration.spec.ts" time="1.415">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-11-6-dashboard-integ-ac1ac--filtering-works-real-time--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-005] Combined filters (search AND cost) work with AND logic" classname="story-11-6-dashboard-integration.spec.ts" time="1.426">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-11-6-dashboard-integ-ee5b5-ND-cost-work-with-AND-logic-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>

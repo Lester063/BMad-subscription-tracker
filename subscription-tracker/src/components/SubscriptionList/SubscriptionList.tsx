@@ -23,6 +23,12 @@ import styles from './SubscriptionList.module.css';
  */
 export interface SubscriptionListProps {
   /**
+   * Optional array of subscriptions to display.
+   * If provided, uses these subscriptions; otherwise falls back to useSubscriptions hook.
+   * Story 11.6: Allows parent to pass filtered subscriptions from useFilteredSubscriptions hook.
+   */
+  subscriptions?: Subscription[];
+  /**
    * Callback when Edit button is clicked on a subscription row
    * Receives the subscription object to edit
    * Story 4.1: Used to set form into edit mode
@@ -33,17 +39,30 @@ export interface SubscriptionListProps {
 /**
  * Renders a list of subscriptions or empty state message
  * 
- * @param props - Component props including onEditClick callback
+ * @param props - Component props including subscriptions (optional) and onEditClick callback
  * @returns {JSX.Element} List of subscription rows or empty state message
  */
-export function SubscriptionList({ onEditClick }: SubscriptionListProps) {
-  const { subscriptions } = useSubscriptions();
+export function SubscriptionList({ subscriptions: providedSubscriptions, onEditClick }: SubscriptionListProps) {
+  const { subscriptions: contextSubscriptions, searchState } = useSubscriptions();
+  
+  // Use provided subscriptions or fall back to context subscriptions
+  // Story 11.6: Enables parent to pass filtered results while maintaining backward compatibility
+  const subscriptions = providedSubscriptions ?? contextSubscriptions;
+  
+  // Check if any filters are currently active
+  // Safely access searchState fields with null/undefined checks
+  const hasActiveFilters = 
+    (searchState?.searchTerm ?? '').trim() !== '' ||
+    searchState?.costRangeMin !== null ||
+    searchState?.costRangeMax !== null;
   
   // Guard against null/undefined subscriptions from hook
   if (!subscriptions || subscriptions.length === 0) {
     return (
       <div className={styles.listContainer} aria-label="Subscriptions">
-        <p className={styles.emptyState} data-testid="empty-list-message">No subscriptions yet.</p>
+        <p className={styles.emptyState} data-testid="empty-list-message">
+          {hasActiveFilters ? 'No subscriptions match your filters.' : 'No subscriptions yet.'}
+        </p>
       </div>
     );
   }

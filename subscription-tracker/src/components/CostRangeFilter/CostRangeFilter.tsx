@@ -105,7 +105,7 @@ export function CostRangeFilter({ onFilterChange }: CostRangeFilterProps): React
   const showClearButton = searchState.costRangeMin !== null || searchState.costRangeMax !== null;
 
   return (
-    <div className={styles.costRangeFilter} aria-label="Cost range filter">
+    <div className={styles.costRangeFilter} data-testid="cost-range-filter" aria-label="Cost range filter">
       {/* Min cost input group */}
       <div className={styles.costRangeFilter__inputGroup}>
         <label htmlFor="min-cost-input" className={styles.costRangeFilter__label}>

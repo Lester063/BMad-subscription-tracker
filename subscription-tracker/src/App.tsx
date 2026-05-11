@@ -2,7 +2,10 @@ import { useRef, useState, useEffect } from 'react'
 import { SubscriptionProvider } from './context/SubscriptionContext'
 import { SubscriptionForm, type FormData, type SubscriptionFormRef } from './components/SubscriptionForm/SubscriptionForm'
 import { SubscriptionList } from './components/SubscriptionList/SubscriptionList'
+import { SearchBar } from './components/SearchBar/SearchBar'
+import { CostRangeFilter } from './components/CostRangeFilter/CostRangeFilter'
 import { useSubscriptions } from './hooks/useSubscriptions'
+import { useFilteredSubscriptions } from './hooks/useFilteredSubscriptions'
 import type { Subscription } from './types/subscription'
 import './App.css'
 
@@ -35,6 +38,7 @@ function generateUUID(): string {
  */
 function AppContent() {
   const { addSubscription, updateSubscription } = useSubscriptions()
+  const filteredSubscriptions = useFilteredSubscriptions()
   const formRef = useRef<SubscriptionFormRef>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [formError, setFormError] = useState<string | undefined>(undefined)
@@ -150,7 +154,7 @@ function AppContent() {
   }, [successMessage])
 
   return (
-    <div className="app" data-testid="app-container" role="main">
+    <div className="app" data-testid="dashboard" role="main">
       <h1>Subscription Tracker</h1>
       {successMessage && (
         <div className="app__success-message" data-testid="success-message" role="alert" aria-live="polite">
@@ -170,7 +174,9 @@ function AppContent() {
         submitButtonLabel={editingSubscription ? 'Update Subscription' : 'Add Subscription'}
         onCancel={editingSubscription ? handleCancelEdit : undefined}
       />
-      <SubscriptionList onEditClick={handleEditClick} />
+      <SearchBar />
+      <CostRangeFilter />
+      <SubscriptionList subscriptions={filteredSubscriptions} onEditClick={handleEditClick} />
     </div>
   )
 }
