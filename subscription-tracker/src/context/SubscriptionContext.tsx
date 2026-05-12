@@ -312,6 +312,26 @@ const SubscriptionProvider: React.FC<{ children: ReactNode; initialSubscriptions
         payload: loadedSubscriptions,
       })
     }
+
+    // E2E test support: listen for storage events to reload subscriptions
+    // when localStorage is updated externally (e.g., in Playwright tests)
+    const handleStorageChange = (): void => {
+      if (!initialSubscriptions) {
+        // Only reload from storage if not in testing mode with provided subscriptions
+        const loadedSubscriptions = loadSubscriptionsFromStorage()
+        dispatch({
+          type: ACTIONS.SET_SUBSCRIPTIONS,
+          payload: loadedSubscriptions,
+        })
+      }
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+
+    // Cleanup: remove listener on unmount
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+    }
   }, [dispatch, initialSubscriptions]) // Add to dependency array for ESLint compliance
 
   // Context value includes both state and dispatch for Story 2.4 hook to wrap

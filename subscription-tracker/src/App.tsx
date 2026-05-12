@@ -4,6 +4,7 @@ import { SubscriptionForm, type FormData, type SubscriptionFormRef } from './com
 import { SubscriptionList } from './components/SubscriptionList/SubscriptionList'
 import { SearchBar } from './components/SearchBar/SearchBar'
 import { CostRangeFilter } from './components/CostRangeFilter/CostRangeFilter'
+import { ExportButton } from './components/ExportButton/ExportButton'
 import { useSubscriptions } from './hooks/useSubscriptions'
 import { useFilteredSubscriptions } from './hooks/useFilteredSubscriptions'
 import type { Subscription } from './types/subscription'
@@ -154,7 +155,7 @@ function AppContent() {
   }, [successMessage])
 
   return (
-    <div className="app" data-testid="dashboard" role="main">
+    <div className="app" data-testid="app-container" role="main">
       <h1>Subscription Tracker</h1>
       {successMessage && (
         <div className="app__success-message" data-testid="success-message" role="alert" aria-live="polite">
@@ -176,6 +177,10 @@ function AppContent() {
       />
       <SearchBar />
       <CostRangeFilter />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px', marginBottom: '16px' }}>
+        <h2 style={{ margin: 0, fontSize: '18px', fontWeight: '600' }}>Subscription List</h2>
+        <ExportButton subscriptions={filteredSubscriptions} />
+      </div>
       <SubscriptionList subscriptions={filteredSubscriptions} onEditClick={handleEditClick} />
     </div>
   )

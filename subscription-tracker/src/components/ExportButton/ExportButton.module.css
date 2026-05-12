@@ -1,0 +1,124 @@
+/**
+ * ExportButton Component Stylesheet
+ *
+ * BEM Naming Convention:
+ * - Block: .container (wrapper)
+ * - Elements: .button, .icon, .label, .error
+ * - Modifiers: .button--loading (disabled state during export)
+ *
+ * All colors and spacing use CSS variables from src/index.css
+ */
+
+/* ========== CONTAINER ========== */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm, 0.5rem);
+}
+
+/* ========== BUTTON ========== */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0.5rem 1rem;
+  min-height: 36px;
+  min-width: 80px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background-color: var(--accent, #aa3bff);
+  border: 2px solid var(--accent, #aa3bff);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+  user-select: none;
+  font-family: inherit;
+}
+
+/* Button hover state */
+.button:hover:not(:disabled) {
+  background-color: var(--accent, #aa3bff);
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(170, 59, 255, 0.3);
+}
+
+/* Button focus state (keyboard accessibility) */
+.button:focus-visible {
+  outline: 2px solid var(--accent, #aa3bff);
+  outline-offset: 2px;
+}
+
+/* Button active state */
+.button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Button disabled state */
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--accent, #aa3bff);
+}
+
+/* Button loading state modifier */
+.button--loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ========== ICON ========== */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ========== LABEL ========== */
+.label {
+  display: inline;
+  font-weight: 600;
+}
+
+/* ========== ERROR MESSAGE ========== */
+.error {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.25rem;
+  font-size: 12px;
+  color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 4px;
+  animation: slideIn 200ms ease-in-out;
+}
+
+/* Animation for error message appearance */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .button {
+    padding: 0.4rem 0.8rem;
+    min-height: 32px;
+    font-size: 13px;
+  }
+
+  .icon {
+    font-size: 0.9rem;
+  }
+}

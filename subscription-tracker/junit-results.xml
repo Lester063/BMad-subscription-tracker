@@ -1,39 +1,54 @@
-<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="3.3503680000000022">
-<testsuite name="story-11-6-dashboard-integration.spec.ts" timestamp="2026-05-08T05:57:37.468Z" hostname="chromium" tests="5" failures="0" skipped="0" time="6.773" errors="0">
-<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-001] SearchBar renders in Dashboard layout" classname="story-11-6-dashboard-integration.spec.ts" time="1.16">
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="10.419570999999996">
+<testsuite name="story-3-4-sorting.spec.ts" timestamp="2026-05-12T00:42:41.027Z" hostname="chromium" tests="1" failures="1" skipped="0" time="1.871" errors="0">
+<testcase name="Story 3.4 - P0: Real-Time Display Critical Path › P0-E2E-001: Should display new subscription immediately after add (&lt; 100ms)" classname="story-3-4-sorting.spec.ts" time="1.871">
 <system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-11-6-dashboard-integ-194b9-renders-in-Dashboard-layout-chromium\trace.zip]]
+<![CDATA[📊 Real-time update took: 277ms
+
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\video.webm]]
+
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\error-context.md]]
+
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\trace.zip]]
 ]]>
 </system-out>
-</testcase>
-<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-002] CostRangeFilter renders in Dashboard layout" classname="story-11-6-dashboard-integration.spec.ts" time="1.323">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-11-6-dashboard-integ-a0c9d-renders-in-Dashboard-layout-chromium\trace.zip]]
+<failure message="expect(received).toBeLessThan(expected)" type="expect.toBeLessThan">
+<![CDATA[  [chromium] › story-3-4-sorting.spec.ts:84:3 › Story 3.4 - P0: Real-Time Display Critical Path › P0-E2E-001: Should display new subscription immediately after add (< 100ms) 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 150
+    Received:   277
+
+       98 |     const actualTime = afterTime - beforeTime;
+       99 |     console.log(`📊 Real-time update took: ${actualTime}ms`);
+    > 100 |     expect(actualTime).toBeLessThan(150);
+          |                        ^
+      101 |     
+      102 |     // ASSERTION: Empty state is gone
+      103 |     await expect(emptyState).not.toBeVisible();
+        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-3-4-sorting.spec.ts:100:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
 ]]>
-</system-out>
-</testcase>
-<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-003] Search filtering works (real-time)" classname="story-11-6-dashboard-integration.spec.ts" time="1.449">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-11-6-dashboard-integ-cad7e--filtering-works-real-time--chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-004] Cost range filtering works (real-time)" classname="story-11-6-dashboard-integration.spec.ts" time="1.415">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-11-6-dashboard-integ-ac1ac--filtering-works-real-time--chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-005] Combined filters (search AND cost) work with AND logic" classname="story-11-6-dashboard-integration.spec.ts" time="1.426">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-11-6-dashboard-integ-ee5b5-ND-cost-work-with-AND-logic-chromium\trace.zip]]
-]]>
-</system-out>
+</failure>
 </testcase>
 </testsuite>
 </testsuites>
