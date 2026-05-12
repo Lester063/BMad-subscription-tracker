@@ -5,6 +5,7 @@ import { SubscriptionList } from './components/SubscriptionList/SubscriptionList
 import { SearchBar } from './components/SearchBar/SearchBar'
 import { CostRangeFilter } from './components/CostRangeFilter/CostRangeFilter'
 import { ExportButton } from './components/ExportButton/ExportButton'
+import { DeleteConfirmationDialog } from './components/DeleteConfirmationDialog/DeleteConfirmationDialog'
 import { useSubscriptions } from './hooks/useSubscriptions'
 import { useFilteredSubscriptions } from './hooks/useFilteredSubscriptions'
 import type { Subscription } from './types/subscription'
@@ -38,13 +39,16 @@ function generateUUID(): string {
  * - Story 4.1: Edit mode - updates existing subscription with new values, preserving createdAt
  */
 function AppContent() {
-  const { addSubscription, updateSubscription } = useSubscriptions()
+  const { addSubscription, updateSubscription, deleteSubscription } = useSubscriptions()
   const filteredSubscriptions = useFilteredSubscriptions()
   const formRef = useRef<SubscriptionFormRef>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [formError, setFormError] = useState<string | undefined>(undefined)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [editingSubscription, setEditingSubscription] = useState<Subscription | null>(null)
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [subscriptionToDelete, setSubscriptionToDelete] = useState<Subscription | null>(null)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   /**
    * Handle edit button click on SubscriptionRow (Story 4.1: AC1)
@@ -61,6 +65,63 @@ function AppContent() {
   const handleCancelEdit = (): void => {
     setEditingSubscription(null)
     formRef.current?.reset()
+  }
+
+  /**
+   * Handle Delete button click on SubscriptionRow (Story 4.2: AC2)
+   * Opens delete confirmation dialog with the subscription to delete
+   */
+  const handleDeleteClick = (subscription: Subscription): void => {
+    setSubscriptionToDelete(subscription)
+    setDeleteDialogOpen(true)
+  }
+
+  /**
+   * Handle Cancel button in delete dialog (Story 4.2: AC4)
+   * Closes dialog and clears state without deleting
+   */
+  const handleCancelDelete = (): void => {
+    setDeleteDialogOpen(false)
+    setSubscriptionToDelete(null)
+  }
+
+  /**
+   * Handle Confirm Delete button in delete dialog (Story 4.2: AC5, AC7)
+   * Deletes the subscription and persists to localStorage
+   * Must complete deletion within 100ms (AC5)
+   */
+  const handleConfirmDelete = (): void => {
+    if (!subscriptionToDelete) return
+
+    try {
+      setIsDeleting(true)
+      
+      // Dispatch DELETE_SUBSCRIPTION action (reducer already exists from Story 2.3)
+      // deleteSubscription() uses useSubscriptions hook which triggers context update
+      // Context reducer saves to localStorage (Story 2.2)
+      deleteSubscription(subscriptionToDelete.id)
+
+      // Close dialog and clear state
+      setDeleteDialogOpen(false)
+      setSubscriptionToDelete(null)
+
+      // Display success message (AC6 when toast is available)
+      setSuccessMessage(`Subscription "${subscriptionToDelete.name}" deleted successfully`)
+      
+      setIsDeleting(false)
+    } catch (error) {
+      setIsDeleting(false)
+      
+      // Capture error message for user display (Story 4.2 AC10)
+      if (error instanceof Error) {
+        setFormError(error.message)
+      } else {
+        setFormError('An error occurred while deleting. Please try again.')
+      }
+      
+      // Log full error for debugging
+      console.error('Error deleting subscription:', error)
+    }
   }
 
   /**
@@ -181,7 +242,14 @@ function AppContent() {
         <h2 style={{ margin: 0, fontSize: '18px', fontWeight: '600' }}>Subscription List</h2>
         <ExportButton subscriptions={filteredSubscriptions} />
       </div>
-      <SubscriptionList subscriptions={filteredSubscriptions} onEditClick={handleEditClick} />
+      <SubscriptionList subscriptions={filteredSubscriptions} onEditClick={handleEditClick} onDeleteClick={handleDeleteClick} />
+      <DeleteConfirmationDialog
+        subscription={subscriptionToDelete!}
+        isOpen={deleteDialogOpen}
+        onCancel={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
+        isLoading={isDeleting}
+      />
     </div>
   )
 }

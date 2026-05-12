@@ -3,12 +3,13 @@ workflowStatus: 'completed'
 totalSteps: 5
 stepsCompleted: ['step-01-detect-mode', 'step-02-load-context', 'step-03-risk-and-testability', 'step-04-coverage-plan', 'step-05-generate-output']
 workflowMode: 'epic-level'
-epicScope: 'Story 002 - Export Subscriptions CSV'
-userStory: 'User Story 2 - Export Filtered/Searched Subscriptions'
+epicScope: 'Story 4.2 - Delete Subscription Workflow'
+storyId: '4-2-implement-delete-subscription-workflow'
 lastStep: 'step-05-generate-output'
 nextStep: null
-lastSaved: '2026-05-12T00:00:00Z'
-outputFile: '_bmad-output/test-artifacts/test-design-002-story2-filtered-export.md'
+lastSaved: '2026-05-12T23:59:59Z'
+outputFile: '_bmad-output/test-artifacts/test-design-4.2-delete-subscription.md'
+designStatus: 'READY_FOR_DEV'
 ---
 
 # Test Design Workflow: Story 002 - Export Subscriptions CSV
