@@ -34,15 +34,21 @@ export interface SubscriptionListProps {
    * Story 4.1: Used to set form into edit mode
    */
   onEditClick?: (subscription: Subscription) => void;
+  /**
+   * Callback when Delete button is clicked on a subscription row
+   * Receives the subscription object to delete
+   * Story 4.2: Used to open delete confirmation dialog
+   */
+  onDeleteClick?: (subscription: Subscription) => void;
 }
 
 /**
  * Renders a list of subscriptions or empty state message
  * 
- * @param props - Component props including subscriptions (optional) and onEditClick callback
+ * @param props - Component props including subscriptions (optional) and onEditClick/onDeleteClick callbacks
  * @returns {JSX.Element} List of subscription rows or empty state message
  */
-export function SubscriptionList({ subscriptions: providedSubscriptions, onEditClick }: SubscriptionListProps) {
+export function SubscriptionList({ subscriptions: providedSubscriptions, onEditClick, onDeleteClick }: SubscriptionListProps) {
   const { subscriptions: contextSubscriptions, searchState } = useSubscriptions();
   
   // Use provided subscriptions or fall back to context subscriptions
@@ -84,6 +90,7 @@ export function SubscriptionList({ subscriptions: providedSubscriptions, onEditC
               key={sub.id}
               subscription={sub}
               onEditClick={onEditClick}
+              onDeleteClick={onDeleteClick}
             />
           );
         })}

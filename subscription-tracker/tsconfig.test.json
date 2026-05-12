@@ -5,7 +5,7 @@
     "target": "es2023",
     "lib": ["ES2023", "DOM"],
     "module": "esnext",
-    "types": ["@playwright/test", "node"],
+    "types": ["@playwright/test", "node", "vitest/globals", "jest", "@testing-library/jest-dom"],
     "skipLibCheck": true,
 
     /* Bundler mode */

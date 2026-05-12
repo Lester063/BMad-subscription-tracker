@@ -27,6 +27,12 @@ export interface SubscriptionRowProps {
    * Optional for backwards compatibility
    */
   onEditClick?: (subscription: Subscription) => void;
+  /**
+   * Callback when Delete button is clicked (Story 4.2)
+   * Receives the subscription object to delete
+   * Optional for backwards compatibility
+   */
+  onDeleteClick?: (subscription: Subscription) => void;
 }
 
 /**
@@ -70,7 +76,7 @@ function formatDueDate(day: number): string {
  * @param props - Component props including subscription data and edit callback
  * @returns {JSX.Element|null} Subscription row element or null if validation fails
  */
-function SubscriptionRowComponent({ subscription, onEditClick }: SubscriptionRowProps): ReactElement | null {
+function SubscriptionRowComponent({ subscription, onEditClick, onDeleteClick }: SubscriptionRowProps): ReactElement | null {
   // Defensive checks for required subscription properties
   if (!subscription || typeof subscription !== 'object') {
     console.error('Invalid subscription prop: received', subscription);
@@ -119,6 +125,16 @@ function SubscriptionRowComponent({ subscription, onEditClick }: SubscriptionRow
     }
   };
 
+  /**
+   * Handle Delete button click (Story 4.2: AC2)
+   * Calls the onDeleteClick callback with the subscription object
+   */
+  const handleDeleteClick = (): void => {
+    if (onDeleteClick) {
+      onDeleteClick(subscription);
+    }
+  };
+
   return (
     <li className={styles.row} data-testid="subscription-item">
       <span className={styles.name} data-testid="subscription-name">{name}</span>
@@ -126,7 +142,7 @@ function SubscriptionRowComponent({ subscription, onEditClick }: SubscriptionRow
       <span className={styles.dueDate} data-testid="subscription-duedate">Due: {dueDateFormatted}</span>
       <div className={styles.actions}>
         <button className={styles.editBtn} type="button" onClick={handleEditClick} aria-label={`Edit ${name}`}>Edit</button>
-        <button className={styles.deleteBtn} type="button" aria-label={`Delete ${name}`}>Delete</button>
+        <button className={styles.deleteBtn} type="button" onClick={handleDeleteClick} aria-label={`Delete ${name}`}>Delete</button>
       </div>
     </li>
   );
