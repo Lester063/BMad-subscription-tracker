@@ -254,32 +254,32 @@ test.describe('Story 002: Export Subscriptions as CSV (ATDD)', () => {
   // Part of Story 2
   // ============================================================================
 
-  test.skip('[P1] should export only filtered subscriptions when filter applied', async ({
+  test('[P1] should export only filtered subscriptions when filter applied', async ({
     page,
   }) => {
-    // RED PHASE: This test WILL FAIL until filter + export integration is implemented
+    // GREEN PHASE: Feature implemented, test should pass
 
-    // RED: Expect filter controls to be visible
-    const costFilterMin = page.getByLabel(/cost.*min|minimum.*cost/i);
-    const costFilterMax = page.getByLabel(/cost.*max|maximum.*cost/i);
+    // GREEN: Expect filter controls to be visible
+    const costFilterMin = page.getByLabel(/min cost/i);
+    const costFilterMax = page.getByLabel(/max cost/i);
     await expect(costFilterMin).toBeVisible();
     await expect(costFilterMax).toBeVisible();
 
-    // RED: Apply cost range filter (10-50)
+    // GREEN: Apply cost range filter (10-50)
     await costFilterMin.fill('10');
     await costFilterMax.fill('50');
 
-    // RED: Wait for subscriptions list to update (filtered)
+    // GREEN: Wait for subscriptions list to update (filtered)
     // In implementation, this will be debounced or triggered by change event
     await page.waitForTimeout(500);
 
-    // RED: Only subscriptions between $10-50 should be visible
+    // GREEN: Only subscriptions between $10-50 should be visible
     // Netflix ($15.99) and Spotify ($12.99) should be visible
     // Adobe ($54.99) should be hidden
     const visibleItems = page.locator('[data-testid="subscription-item"]:visible');
     await expect(visibleItems).toHaveCount(2);
 
-    // RED: Click export and verify CSV contains only filtered subs
+    // GREEN: Click export and verify CSV contains only filtered subs
     const downloadPromise = page.waitForEvent('download');
     await page.getByRole('button', { name: /export/i }).click();
     const download = await downloadPromise;
@@ -287,12 +287,12 @@ test.describe('Story 002: Export Subscriptions as CSV (ATDD)', () => {
     const csvPath = await download.path();
     const csvContent = readFileSync(csvPath, 'utf-8');
 
-    // RED: Verify only filtered subscriptions in file
+    // GREEN: Verify only filtered subscriptions in file
     expect(csvContent).toContain('Netflix');
     expect(csvContent).toContain('Spotify Premium');
     expect(csvContent).not.toContain('Adobe Creative Cloud');
 
-    // RED: Verify row count (header + 2 data rows)
+    // GREEN: Verify row count (header + 2 data rows)
     const lines = csvContent.trim().split('\n');
     expect(lines.length).toBe(3); // Header + 2 subscriptions
   });

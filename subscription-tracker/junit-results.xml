@@ -1,8 +1,585 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="10.419570999999996">
-<testsuite name="story-3-4-sorting.spec.ts" timestamp="2026-05-12T00:42:41.027Z" hostname="chromium" tests="1" failures="1" skipped="0" time="1.871" errors="0">
-<testcase name="Story 3.4 - P0: Real-Time Display Critical Path › P0-E2E-001: Should display new subscription immediately after add (&lt; 100ms)" classname="story-3-4-sorting.spec.ts" time="1.871">
+<testsuites id="" name="" tests="101" failures="1" skipped="0" errors="5" time="38.357554">
+<testsuite name="export-subscriptions.spec.ts" timestamp="2026-05-12T01:33:14.092Z" hostname="chromium" tests="10" failures="0" skipped="0" time="28.77" errors="0">
+<testcase name="Story 002: Export Subscriptions as CSV (ATDD) › [P0] should download CSV file when export button is clicked" classname="export-subscriptions.spec.ts" time="2.397">
 <system-out>
-<![CDATA[📊 Real-time update took: 277ms
+<![CDATA[
+[[ATTACHMENT|test-results\export-subscriptions-Story-35598-en-export-button-is-clicked-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 002: Export Subscriptions as CSV (ATDD) › [P0] should export CSV with correct columns and no data corruption" classname="export-subscriptions.spec.ts" time="2.543">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\export-subscriptions-Story-fd06e-umns-and-no-data-corruption-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 002: Export Subscriptions as CSV (ATDD) › [P0] should properly escape special characters in subscription names" classname="export-subscriptions.spec.ts" time="3.666">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\export-subscriptions-Story-154e5-cters-in-subscription-names-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 002: Export Subscriptions as CSV (ATDD) › [P1] should export only filtered subscriptions when filter applied" classname="export-subscriptions.spec.ts" time="2.654">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\export-subscriptions-Story-2ea04-iptions-when-filter-applied-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 002: Export Subscriptions as CSV (ATDD) › [P1] should disable export button or show message when no subscriptions" classname="export-subscriptions.spec.ts" time="3.733">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\export-subscriptions-Story-8146a-ssage-when-no-subscriptions-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 002: Export Subscriptions as CSV (ATDD) › [P1] should use correct filename format (subscriptions_YYYYMMDD.csv)" classname="export-subscriptions.spec.ts" time="2.076">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\export-subscriptions-Story-65655-subscriptions-YYYYMMDD-csv--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 002: Export Subscriptions as CSV (ATDD) › [P2] should preserve UTF-8 encoding with international characters" classname="export-subscriptions.spec.ts" time="2.716">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\export-subscriptions-Story-2b114-th-international-characters-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 002: Export Subscriptions as CSV (ATDD) › [P2] should export 1000 subscriptions in less than 2 seconds" classname="export-subscriptions.spec.ts" time="4.273">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\export-subscriptions-Story-f8cac-ions-in-less-than-2-seconds-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 002: Export Subscriptions as CSV (ATDD) › [P3] should have accessible export button with proper aria labels" classname="export-subscriptions.spec.ts" time="1.112">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\export-subscriptions-Story-ad7e0-ton-with-proper-aria-labels-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 002: Export Subscriptions as CSV (ATDD) › [P3] should prevent duplicate exports when button clicked rapidly" classname="export-subscriptions.spec.ts" time="3.6">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\export-subscriptions-Story-7d025-when-button-clicked-rapidly-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stories-4.1-4.3-edit-and-timestamps.spec.ts" timestamp="2026-05-12T01:33:14.092Z" hostname="chromium" tests="13" failures="0" skipped="0" time="20.874" errors="0">
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-01] AC1: Edit button opens form with pre-populated values" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.031">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-e275e-m-with-pre-populated-values-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-02] AC2: Submit button shows &quot;Update Subscription&quot; in edit mode" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.047">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-bd7ad-e-Subscription-in-edit-mode-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-03] AC3: Cancel button exits edit mode and clears form" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.137">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-3577f-s-edit-mode-and-clears-form-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-04] AC4: Same name allowed in edit mode (fuzzy match excludes current)" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.351">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-fa7ed-zzy-match-excludes-current--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-05] AC5 + AC6: Real-time list update + success toast" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="4.553">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-1a00c-e-list-update-success-toast-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-06] AC8: Keyboard navigation (Tab, Enter, Escape)" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.188">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-45ecb-avigation-Tab-Enter-Escape--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-07] AC9: Accessibility - WCAG 2.1 Level A compliance" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.22">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-4636b-WCAG-2-1-Level-A-compliance-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-08] AC10: Error handling - validation errors display inline" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.714">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-a2a93-ation-errors-display-inline-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.3-01] AC1 + AC2 (4.3): Timestamps - createdAt immutable, updatedAt updated" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.587">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-e4982-immutable-updatedAt-updated-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.3-02] AC3 (4.3): Timestamps persist through page reload" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.617">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-9ede6-persist-through-page-reload-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.3-03] Multiple edits create incrementing timestamps" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.686">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-b9705-ate-incrementing-timestamps-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-DEFECT-01] Missed AC: Form fields cleared after successful update" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.559">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-fc4d0-red-after-successful-update-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 4.1 &amp; 4.3: Edit Subscription Workflow + Timestamps › [E2E-4.1-DEFECT-02] Form clearing consistency: Cancel vs Update" classname="stories-4.1-4.3-edit-and-timestamps.spec.ts" time="1.184">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\stories-4.1-4.3-edit-and-t-b19d2-onsistency-Cancel-vs-Update-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="story-002-export-filtered.spec.ts" timestamp="2026-05-12T01:33:14.092Z" hostname="chromium" tests="5" failures="0" skipped="0" time="30.047" errors="5">
+<testcase name="S2.1 | Export with search filter active" classname="story-002-export-filtered.spec.ts" time="5.991">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\error-context.md]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\trace.zip]]
+]]>
+</system-out>
+<error message="page.waitForSelector: Timeout 5000ms exceeded." type="TimeoutError">
+<![CDATA[  [chromium] › story-002-export-filtered.spec.ts:64:1 › S2.1 | Export with search filter active ────
+
+    TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="subscription-list"]') to be visible
+
+
+      80 |
+      81 |   // Wait for subscriptions to load
+    > 82 |   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
+         |              ^
+      83 |
+      84 |   // Get initial subscription count (all subscriptions)
+      85 |   const allSubscriptions = await page.locator('[data-testid="subscription-item"]').count();
+        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-002-export-filtered.spec.ts:82:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</error>
+</testcase>
+<testcase name="S2.2 | Export with cost range filter active" classname="story-002-export-filtered.spec.ts" time="6.034">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\error-context.md]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\trace.zip]]
+]]>
+</system-out>
+<error message="page.waitForSelector: Timeout 5000ms exceeded." type="TimeoutError">
+<![CDATA[  [chromium] › story-002-export-filtered.spec.ts:142:1 › S2.2 | Export with cost range filter active 
+
+    TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="subscription-list"]') to be visible
+
+
+      158 |
+      159 |   // Wait for subscriptions
+    > 160 |   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
+          |              ^
+      161 |
+      162 |   // Get initial subscription count
+      163 |   const allSubscriptions = await page.locator('[data-testid="subscription-item"]').count();
+        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-002-export-filtered.spec.ts:160:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</error>
+</testcase>
+<testcase name="S2.3 | Export with combined search + filter active" classname="story-002-export-filtered.spec.ts" time="6.081">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\error-context.md]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\trace.zip]]
+]]>
+</system-out>
+<error message="page.waitForSelector: Timeout 5000ms exceeded." type="TimeoutError">
+<![CDATA[  [chromium] › story-002-export-filtered.spec.ts:222:1 › S2.3 | Export with combined search + filter active 
+
+    TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="subscription-list"]') to be visible
+
+
+      238 |
+      239 |   // Wait for subscriptions
+    > 240 |   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
+          |              ^
+      241 |
+      242 |   // Get initial count
+      243 |   const allSubscriptions = await page.locator('[data-testid="subscription-item"]').count();
+        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-002-export-filtered.spec.ts:240:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</error>
+</testcase>
+<testcase name="S2.4 | Export with no matches shows friendly message" classname="story-002-export-filtered.spec.ts" time="6.063">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\error-context.md]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\trace.zip]]
+]]>
+</system-out>
+<error message="page.waitForSelector: Timeout 5000ms exceeded." type="TimeoutError">
+<![CDATA[  [chromium] › story-002-export-filtered.spec.ts:318:1 › S2.4 | Export with no matches shows friendly message 
+
+    TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="subscription-list"]') to be visible
+
+
+      333 |
+      334 |   // Wait for subscriptions
+    > 335 |   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
+          |              ^
+      336 |
+      337 |   // Action: Apply search that matches nothing
+      338 |   const searchInput = page.locator('input#searchbar-input');
+        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-002-export-filtered.spec.ts:335:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</error>
+</testcase>
+<testcase name="S2.10 | Performance baseline: export 500+ filtered rows in &lt;2 seconds" classname="story-002-export-filtered.spec.ts" time="5.878">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\error-context.md]]
+
+[[ATTACHMENT|test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\trace.zip]]
+]]>
+</system-out>
+<error message="page.waitForSelector: Timeout 5000ms exceeded." type="TimeoutError">
+<![CDATA[  [chromium] › story-002-export-filtered.spec.ts:378:1 › S2.10 | Performance baseline: export 500+ filtered rows in <2 seconds 
+
+    TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="subscription-list"]') to be visible
+
+
+      393 |
+      394 |   // Wait for subscriptions
+    > 395 |   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
+          |              ^
+      396 |
+      397 |   // Verify we have enough subscriptions to test with
+      398 |   const subscriptionCount = await page.locator('[data-testid="subscription-item"]').count();
+        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-002-export-filtered.spec.ts:395:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="story-11-6-dashboard-integration.spec.ts" timestamp="2026-05-12T01:33:14.092Z" hostname="chromium" tests="5" failures="0" skipped="0" time="2.369" errors="0">
+<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-001] SearchBar renders in Dashboard layout" classname="story-11-6-dashboard-integration.spec.ts" time="0.446">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-11-6-dashboard-integ-194b9-renders-in-Dashboard-layout-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-002] CostRangeFilter renders in Dashboard layout" classname="story-11-6-dashboard-integration.spec.ts" time="0.457">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-11-6-dashboard-integ-a0c9d-renders-in-Dashboard-layout-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-003] Search filtering works (real-time)" classname="story-11-6-dashboard-integration.spec.ts" time="0.452">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-11-6-dashboard-integ-cad7e--filtering-works-real-time--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-004] Cost range filtering works (real-time)" classname="story-11-6-dashboard-integration.spec.ts" time="0.528">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-11-6-dashboard-integ-ac1ac--filtering-works-real-time--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 11.6 — P0: Dashboard Integration (RED PHASE) › [P0-005] Combined filters (search AND cost) work with AND logic" classname="story-11-6-dashboard-integration.spec.ts" time="0.486">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-11-6-dashboard-integ-ee5b5-ND-cost-work-with-AND-logic-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="story-3-3-e2e.spec.ts" timestamp="2026-05-12T01:33:14.092Z" hostname="chromium" tests="18" failures="0" skipped="0" time="31.09" errors="0">
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC4.1: User submits form and sees success message appear" classname="story-3-3-e2e.spec.ts" time="0.592">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-d14d4-sees-success-message-appear-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC4.2: Success message text is correct" classname="story-3-3-e2e.spec.ts" time="0.573">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-1258c-ess-message-text-is-correct-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P1] AC4.3: Success message disappears after 3 seconds" classname="story-3-3-e2e.spec.ts" time="5.074">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-5842b--disappears-after-3-seconds-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC5.1: New subscription appears in list immediately after submit" classname="story-3-3-e2e.spec.ts" time="1.297">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-e2ed3-st-immediately-after-submit-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC5.2: New subscription displays correct name" classname="story-3-3-e2e.spec.ts" time="1.254">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-1d511-ption-displays-correct-name-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC5.3: New subscription displays correct cost" classname="story-3-3-e2e.spec.ts" time="1.377">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-d9421-ption-displays-correct-cost-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC5.4: New subscription displays correct due date" classname="story-3-3-e2e.spec.ts" time="1.458">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-70cb6-n-displays-correct-due-date-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P1] AC3.1: Form fields are cleared after submission" classname="story-3-3-e2e.spec.ts" time="1.448">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-bf98c-re-cleared-after-submission-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P1] AC3.2: User can add another subscription immediately" classname="story-3-3-e2e.spec.ts" time="5.275">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-f97f3-er-subscription-immediately-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P1] AC5.5: Multiple subscriptions added rapidly without data loss" classname="story-3-3-e2e.spec.ts" time="3.117">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-beea1-d-rapidly-without-data-loss-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC6.1: Subscription remains in list after page reload" classname="story-3-3-e2e.spec.ts" time="1.411">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-bdae2-s-in-list-after-page-reload-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC6.2: Subscription name persists correctly after reload" classname="story-3-3-e2e.spec.ts" time="1.366">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-53775-ists-correctly-after-reload-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC6.3: Subscription cost persists correctly after reload" classname="story-3-3-e2e.spec.ts" time="1.297">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-8a4a4-ists-correctly-after-reload-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC6.4: Subscription due date persists correctly after reload" classname="story-3-3-e2e.spec.ts" time="1.247">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-f7e61-ists-correctly-after-reload-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P0] AC7.1: Form does NOT submit if required field is missing" classname="story-3-3-e2e.spec.ts" time="1.029">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-06225-f-required-field-is-missing-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P1] AC7.2: Validation error appears for missing required field" classname="story-3-3-e2e.spec.ts" time="1.079">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-ba4d8--for-missing-required-field-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P1] AC8.1: Invalid cost (non-numeric) is rejected" classname="story-3-3-e2e.spec.ts" time="1.008">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-1e190-ost-non-numeric-is-rejected-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.3: Add Subscription Workflow - E2E (Enhanced) › [P1] AC8.2: Invalid due date (&gt;31) is rejected" classname="story-3-3-e2e.spec.ts" time="1.188">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-3-e2e-Story-3-3-Ad-c0982-lid-due-date-31-is-rejected-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="story-3-4-sorting.spec.ts" timestamp="2026-05-12T01:33:14.092Z" hostname="chromium" tests="11" failures="1" skipped="0" time="19.258" errors="0">
+<testcase name="Story 3.4 - P0: Real-Time Display Critical Path › P0-E2E-001: Should display new subscription immediately after add (&lt; 100ms)" classname="story-3-4-sorting.spec.ts" time="1.571">
+<system-out>
+<![CDATA[📊 Real-time update took: 253ms
 
 [[ATTACHMENT|test-results\story-3-4-sorting-Story-3--00416-mmediately-after-add-100ms--chromium\test-failed-1.png]]
 
@@ -19,7 +596,7 @@
     Error: expect(received).toBeLessThan(expected)
 
     Expected: < 150
-    Received:   277
+    Received:   253
 
        98 |     const actualTime = afterTime - beforeTime;
        99 |     console.log(`📊 Real-time update took: ${actualTime}ms`);
@@ -49,6 +626,355 @@
     ────────────────────────────────────────────────────────────────────────────────────────────────
 ]]>
 </failure>
+</testcase>
+<testcase name="Story 3.4 - P0: Real-Time Display Critical Path › P0-E2E-002: Should update without loading state or visual flicker" classname="story-3-4-sorting.spec.ts" time="1.585">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--32135-ing-state-or-visual-flicker-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.4 - P0: Real-Time Display Critical Path › P0-E2E-003: Should not require page refresh on add" classname="story-3-4-sorting.spec.ts" time="1.455">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--5f28b-require-page-refresh-on-add-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.4 - P1: Sorting &amp; Real-Time Order › P1-E2E-001: Should sort subscriptions by dueDate after each add" classname="story-3-4-sorting.spec.ts" time="1.674">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--e5cf1-s-by-dueDate-after-each-add-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.4 - P1: Sorting &amp; Real-Time Order › P1-E2E-002: Should maintain insertion order for duplicate due dates" classname="story-3-4-sorting.spec.ts" time="1.581">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--12ae6-der-for-duplicate-due-dates-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.4 - P1: Sorting &amp; Real-Time Order › P1-E2E-003: Should re-sort immediately after each add (real-time order)" classname="story-3-4-sorting.spec.ts" time="1.857">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--9adb1-r-each-add-real-time-order--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.4 - P1: Empty State Transition › P1-E2E-004: Should transition from empty state to populated list" classname="story-3-4-sorting.spec.ts" time="1.683">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--7359d-pty-state-to-populated-list-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.4 - P2: Performance &amp; Edge Cases › P2-E2E-001: Should handle rapid subscription adds without lag" classname="story-3-4-sorting.spec.ts" time="2.231">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--a5be5-bscription-adds-without-lag-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.4 - P2: Performance &amp; Edge Cases › P2-E2E-002: Should handle minimum dueDate=1" classname="story-3-4-sorting.spec.ts" time="2.388">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--989f9-ld-handle-minimum-dueDate-1-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.4 - P2: Performance &amp; Edge Cases › P2-E2E-003: Should handle maximum dueDate=31" classname="story-3-4-sorting.spec.ts" time="1.478">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--c23b7-d-handle-maximum-dueDate-31-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.4 - Accessibility Baseline (Story 3.5 will expand) › ACC-001: Subscription list should be semantic &lt;ul&gt; with &lt;li&gt; items" classname="story-3-4-sorting.spec.ts" time="1.755">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-4-sorting-Story-3--83fc1-e-semantic-ul-with-li-items-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="story-3-5-keyboard-accessibility.spec.ts" timestamp="2026-05-12T01:33:14.092Z" hostname="chromium" tests="15" failures="0" skipped="0" time="19.588" errors="0">
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] TAB moves focus to Name input field (first focusable element)" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.319">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-59726-ld-first-focusable-element--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] TAB navigates: Name → Cost → DueDate → Add → Clear" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.058">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-129f0-ost-→-DueDate-→-Add-→-Clear-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Shift+Tab navigates backward through form fields" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.041">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-5aa4b-ackward-through-form-fields-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] TAB wraps from last element to first (focus cycling)" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.626">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-43cc0-ent-to-first-focus-cycling--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] TAB skips invisible/hidden elements" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.035">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-8ed71-s-invisible-hidden-elements-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] TAB 20+ times consecutively - no element traps focus" classname="story-3-5-keyboard-accessibility.spec.ts" time="3.062">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-4fcfb-ly---no-element-traps-focus-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Escape key does not interfere with form" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.028">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-f9ae2-oes-not-interfere-with-form-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Focus indicator visible on Name input (outline ≥ 2px)" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.068">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-db778-n-Name-input-outline-≥-2px--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Focus indicator visible on all interactive elements" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.409">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-ba664-on-all-interactive-elements-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Focus outline has sufficient contrast (≥ 3:1 WCAG Level A)" classname="story-3-5-keyboard-accessibility.spec.ts" time="0.99">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-532ba-ontrast-≥-3-1-WCAG-Level-A--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] Add subscription, then list renders with proper semantics" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.287">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-0d1a1-nders-with-proper-semantics-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P0] List uses semantic HTML (&lt;ul&gt; and &lt;li&gt; elements)" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.162">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-95df1-ic-HTML-ul-and-li-elements--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P1] Tab order respects DOM order (no tabindex &gt; 0)" classname="story-3-5-keyboard-accessibility.spec.ts" time="0.887">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-f7046-ts-DOM-order-no-tabindex-0--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P1] Success message has aria-live attribute for announcements" classname="story-3-5-keyboard-accessibility.spec.ts" time="0.958">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-788ea-attribute-for-announcements-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Story 3.5: Keyboard Navigation &amp; Accessibility (GREEN PHASE) › [P1] Enter key submits form (alternative to clicking button)" classname="story-3-5-keyboard-accessibility.spec.ts" time="1.658">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\story-3-5-keyboard-accessi-f2798-rnative-to-clicking-button--chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="subscription-form.spec.ts" timestamp="2026-05-12T01:33:14.092Z" hostname="chromium" tests="17" failures="0" skipped="0" time="21.051" errors="0">
+<testcase name="SubscriptionForm Component › UBS-3.1.1: should allow user to enter subscription name in name field" classname="subscription-form.spec.ts" time="0.748">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-8a3b4-cription-name-in-name-field-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.2: should allow user to enter monthly cost in cost field" classname="subscription-form.spec.ts" time="0.755">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-79fef--monthly-cost-in-cost-field-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.3: should allow user to enter due date (day of month) in due date field" classname="subscription-form.spec.ts" time="0.85">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-de2d7--of-month-in-due-date-field-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.4: should display placeholder text in name field" classname="subscription-form.spec.ts" time="0.961">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-ac71b-ceholder-text-in-name-field-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.5: should clear all fields when user clicks Clear button" classname="subscription-form.spec.ts" time="1.092">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-b10da-en-user-clicks-Clear-button-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.6: should submit form when user clicks Add Subscription button" classname="subscription-form.spec.ts" time="1.143">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-5b204-cks-Add-Subscription-button-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.7: should not show errors when submitting with valid data" classname="subscription-form.spec.ts" time="5.152">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-b1a9a--submitting-with-valid-data-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.8: should allow keyboard navigation between fields using Tab" classname="subscription-form.spec.ts" time="1.083">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-55756-on-between-fields-using-Tab-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.9: should submit form when user presses Enter on last field" classname="subscription-form.spec.ts" time="1.284">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-0e70e-presses-Enter-on-last-field-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.10: should display label for name field" classname="subscription-form.spec.ts" time="1.084">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-1592f-isplay-label-for-name-field-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.11: should allow focus on name field using keyboard" classname="subscription-form.spec.ts" time="1.068">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-1e3c3-n-name-field-using-keyboard-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.12: should show visual focus indicator on focused elements" classname="subscription-form.spec.ts" time="1.117">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-5aabc-dicator-on-focused-elements-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.13: should have proper label association for screen reader" classname="subscription-form.spec.ts" time="0.979">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-bb8cf-sociation-for-screen-reader-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.14: should display three input fields when form renders" classname="subscription-form.spec.ts" time="0.928">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-b2602-ut-fields-when-form-renders-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.15: should display Add Subscription submit button" classname="subscription-form.spec.ts" time="0.92">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-7e9e6--Subscription-submit-button-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.16: should display Clear reset button" classname="subscription-form.spec.ts" time="0.93">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-4a923--display-Clear-reset-button-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionForm Component › UBS-3.1.17: should display form with proper layout" classname="subscription-form.spec.ts" time="0.957">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-form-Subscrip-ed115-lay-form-with-proper-layout-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="subscription-list.spec.ts" timestamp="2026-05-12T01:33:14.092Z" hostname="chromium" tests="7" failures="0" skipped="0" time="6.763" errors="0">
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display empty state when no subscriptions exist" classname="subscription-list.spec.ts" time="1.01">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-list-Subscrip-cffd8-when-no-subscriptions-exist-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display subscription name in list" classname="subscription-list.spec.ts" time="0.999">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-list-Subscrip-08723-y-subscription-name-in-list-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display subscription cost in currency format" classname="subscription-list.spec.ts" time="1.003">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-list-Subscrip-106cd-ion-cost-in-currency-format-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should display due date with proper formatting" classname="subscription-list.spec.ts" time="1.007">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-list-Subscrip-59244-date-with-proper-formatting-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P1] should display edit button on each row" classname="subscription-list.spec.ts" time="0.987">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-list-Subscrip-fa67b-lay-edit-button-on-each-row-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P1] should display delete button on each row" classname="subscription-list.spec.ts" time="0.843">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-list-Subscrip-3c6f4-y-delete-button-on-each-row-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="SubscriptionList Display (ATDD - Story 3.2) › [P0] should render 100+ subscriptions within 100ms" classname="subscription-list.spec.ts" time="0.914">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\subscription-list-Subscrip-5189f--subscriptions-within-100ms-chromium\trace.zip]]
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>

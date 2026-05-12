@@ -4,11 +4,11 @@ totalSteps: 5
 stepsCompleted: ['step-01-detect-mode', 'step-02-load-context', 'step-03-risk-and-testability', 'step-04-coverage-plan', 'step-05-generate-output']
 workflowMode: 'epic-level'
 epicScope: 'Story 002 - Export Subscriptions CSV'
-userStory: 'User Story 1 - Export Dashboard View as CSV'
+userStory: 'User Story 2 - Export Filtered/Searched Subscriptions'
 lastStep: 'step-05-generate-output'
 nextStep: null
-lastSaved: '2026-05-11T14:22:00Z'
-outputFile: '_bmad-output/test-artifacts/test-design-002-export-csv.md'
+lastSaved: '2026-05-12T00:00:00Z'
+outputFile: '_bmad-output/test-artifacts/test-design-002-story2-filtered-export.md'
 ---
 
 # Test Design Workflow: Story 002 - Export Subscriptions CSV
