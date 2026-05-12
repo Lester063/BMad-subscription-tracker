@@ -115,7 +115,7 @@ test.describe('Story 11.6 — P0: Dashboard Integration (RED PHASE)', () => {
    */
   test('[P0-001] SearchBar renders in Dashboard layout', async ({ page }) => {
     // The app should have a main layout/dashboard component
-    const dashboard = page.locator('[data-testid="dashboard"]');
+    const dashboard = page.locator('[data-testid="app-container"]');
     await expect(dashboard).toBeVisible();
 
     // SearchBar component should be present
@@ -148,7 +148,7 @@ test.describe('Story 11.6 — P0: Dashboard Integration (RED PHASE)', () => {
    */
   test('[P0-002] CostRangeFilter renders in Dashboard layout', async ({ page }) => {
     // Dashboard should exist
-    const dashboard = page.locator('[data-testid="dashboard"]');
+    const dashboard = page.locator('[data-testid="app-container"]');
     await expect(dashboard).toBeVisible();
 
     // CostRangeFilter component should be present
