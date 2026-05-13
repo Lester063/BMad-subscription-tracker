@@ -1,249 +1,53 @@
-<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="5" time="14.589914000000107">
-<testsuite name="story-002-export-filtered.spec.ts" timestamp="2026-05-12T06:07:23.082Z" hostname="chromium" tests="5" failures="0" skipped="0" time="44.404" errors="5">
-<testcase name="S2.1 | Export with search filter active" classname="story-002-export-filtered.spec.ts" time="8.995">
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="5.303790999999968">
+<testsuite name="story-4-2-delete-subscription.spec.ts" timestamp="2026-05-13T00:02:56.024Z" hostname="chromium" tests="1" failures="1" skipped="0" time="1.501" errors="0">
+<testcase name="Story 4.2: Delete Subscription Workflow › [P0] E4.2-001: Happy path - delete subscription via UI" classname="story-4-2-delete-subscription.spec.ts" time="1.501">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\test-failed-1.png]]
+[[ATTACHMENT|test-results\story-4-2-delete-subscript-97ab3--delete-subscription-via-UI-chromium\test-failed-1.png]]
 
-[[ATTACHMENT|test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\video.webm]]
+[[ATTACHMENT|test-results\story-4-2-delete-subscript-97ab3--delete-subscription-via-UI-chromium\video.webm]]
 
-[[ATTACHMENT|test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\error-context.md]]
+[[ATTACHMENT|test-results\story-4-2-delete-subscript-97ab3--delete-subscription-via-UI-chromium\error-context.md]]
 
-[[ATTACHMENT|test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\trace.zip]]
+[[ATTACHMENT|test-results\story-4-2-delete-subscript-97ab3--delete-subscription-via-UI-chromium\trace.zip]]
 ]]>
 </system-out>
-<error message="page.waitForSelector: Timeout 5000ms exceeded." type="TimeoutError">
-<![CDATA[  [chromium] › story-002-export-filtered.spec.ts:64:1 › S2.1 | Export with search filter active ────
+<failure message="expect(received).toBeLessThan(expected)" type="expect.toBeLessThan">
+<![CDATA[  [chromium] › story-4-2-delete-subscription.spec.ts:130:3 › Story 4.2: Delete Subscription Workflow › [P0] E4.2-001: Happy path - delete subscription via UI 
 
-    TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.
-    Call log:
-      - waiting for locator('[data-testid="subscription-list"]') to be visible
+    Error: expect(received).toBeLessThan(expected)
 
+    Expected: < 100
+    Received:   313
 
-      80 |
-      81 |   // Wait for subscriptions to load
-    > 82 |   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
-         |              ^
-      83 |
-      84 |   // Get initial subscription count (all subscriptions)
-      85 |   const allSubscriptions = await page.locator('[data-testid="subscription-item"]').count();
-        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-002-export-filtered.spec.ts:82:14
+      184 |
+      185 |     // Assert 7: Deletion completed within 100ms (React sync update)
+    > 186 |     expect(deletionTime).toBeLessThan(100);
+          |                          ^
+      187 |
+      188 |     // Assert 8: Success toast notification displays
+      189 |     const successToast = page.locator('text=Subscription deleted successfully');
+        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-4-2-delete-subscription.spec.ts:186:26
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\test-failed-1.png
+    ..\..\test-results\story-4-2-delete-subscript-97ab3--delete-subscription-via-UI-chromium\test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\video.webm
+    ..\..\test-results\story-4-2-delete-subscript-97ab3--delete-subscription-via-UI-chromium\video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ..\..\test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\error-context.md
+    Error Context: ..\..\test-results\story-4-2-delete-subscript-97ab3--delete-subscription-via-UI-chromium\error-context.md
 
     attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\trace.zip
+    ..\..\test-results\story-4-2-delete-subscript-97ab3--delete-subscription-via-UI-chromium\trace.zip
     Usage:
 
-        npx playwright show-trace ..\..\test-results\story-002-export-filtered--cb93a-t-with-search-filter-active-chromium\trace.zip
+        npx playwright show-trace ..\..\test-results\story-4-2-delete-subscript-97ab3--delete-subscription-via-UI-chromium\trace.zip
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 ]]>
-</error>
-</testcase>
-<testcase name="S2.2 | Export with cost range filter active" classname="story-002-export-filtered.spec.ts" time="9.01">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\video.webm]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\error-context.md]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\trace.zip]]
-]]>
-</system-out>
-<error message="page.waitForSelector: Timeout 5000ms exceeded." type="TimeoutError">
-<![CDATA[  [chromium] › story-002-export-filtered.spec.ts:142:1 › S2.2 | Export with cost range filter active 
-
-    TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.
-    Call log:
-      - waiting for locator('[data-testid="subscription-list"]') to be visible
-
-
-      158 |
-      159 |   // Wait for subscriptions
-    > 160 |   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
-          |              ^
-      161 |
-      162 |   // Get initial subscription count
-      163 |   const allSubscriptions = await page.locator('[data-testid="subscription-item"]').count();
-        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-002-export-filtered.spec.ts:160:14
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\..\test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\story-002-export-filtered--34230-th-cost-range-filter-active-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</error>
-</testcase>
-<testcase name="S2.3 | Export with combined search + filter active" classname="story-002-export-filtered.spec.ts" time="9.178">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\video.webm]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\error-context.md]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\trace.zip]]
-]]>
-</system-out>
-<error message="page.waitForSelector: Timeout 5000ms exceeded." type="TimeoutError">
-<![CDATA[  [chromium] › story-002-export-filtered.spec.ts:222:1 › S2.3 | Export with combined search + filter active 
-
-    TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.
-    Call log:
-      - waiting for locator('[data-testid="subscription-list"]') to be visible
-
-
-      238 |
-      239 |   // Wait for subscriptions
-    > 240 |   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
-          |              ^
-      241 |
-      242 |   // Get initial count
-      243 |   const allSubscriptions = await page.locator('[data-testid="subscription-item"]').count();
-        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-002-export-filtered.spec.ts:240:14
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\..\test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\story-002-export-filtered--d5c1b-mbined-search-filter-active-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</error>
-</testcase>
-<testcase name="S2.4 | Export with no matches shows friendly message" classname="story-002-export-filtered.spec.ts" time="8.503">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\video.webm]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\error-context.md]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\trace.zip]]
-]]>
-</system-out>
-<error message="page.waitForSelector: Timeout 5000ms exceeded." type="TimeoutError">
-<![CDATA[  [chromium] › story-002-export-filtered.spec.ts:318:1 › S2.4 | Export with no matches shows friendly message 
-
-    TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.
-    Call log:
-      - waiting for locator('[data-testid="subscription-list"]') to be visible
-
-
-      333 |
-      334 |   // Wait for subscriptions
-    > 335 |   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
-          |              ^
-      336 |
-      337 |   // Action: Apply search that matches nothing
-      338 |   const searchInput = page.locator('input#searchbar-input');
-        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-002-export-filtered.spec.ts:335:14
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\..\test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\story-002-export-filtered--153ac-ches-shows-friendly-message-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</error>
-</testcase>
-<testcase name="S2.10 | Performance baseline: export 500+ filtered rows in &lt;2 seconds" classname="story-002-export-filtered.spec.ts" time="8.718">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\video.webm]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\error-context.md]]
-
-[[ATTACHMENT|test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\trace.zip]]
-]]>
-</system-out>
-<error message="page.waitForSelector: Timeout 5000ms exceeded." type="TimeoutError">
-<![CDATA[  [chromium] › story-002-export-filtered.spec.ts:378:1 › S2.10 | Performance baseline: export 500+ filtered rows in <2 seconds 
-
-    TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.
-    Call log:
-      - waiting for locator('[data-testid="subscription-list"]') to be visible
-
-
-      393 |
-      394 |   // Wait for subscriptions
-    > 395 |   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
-          |              ^
-      396 |
-      397 |   // Verify we have enough subscriptions to test with
-      398 |   const subscriptionCount = await page.locator('[data-testid="subscription-item"]').count();
-        at C:\Users\Lester Tuazon\Documents\GitHub\BMad-subscription-tracker\subscription-tracker\tests\e2e\story-002-export-filtered.spec.ts:395:14
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\..\test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\story-002-export-filtered--ce832--filtered-rows-in-2-seconds-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</error>
+</failure>
 </testcase>
 </testsuite>
 </testsuites>
