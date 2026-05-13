@@ -10,14 +10,81 @@
  * Implementation should make them pass
  */
 
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 import * as fs from 'fs';
 
-const BASE_URL = 'http://localhost:5173';
+const BASE_URL = '/';
 
 // ============================================================================
 // SETUP & UTILITIES
 // ============================================================================
+
+/**
+ * Test subscriptions with a variety of names and costs for filtering scenarios
+ */
+const TEST_SUBSCRIPTIONS = [
+  {
+    id: 'sub-netflix',
+    name: 'Netflix',
+    cost: 15.99,
+    dueDate: 15,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  },
+  {
+    id: 'sub-netflix-premium',
+    name: 'Netflix Premium',
+    cost: 19.99,
+    dueDate: 15,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  },
+  {
+    id: 'sub-hulu',
+    name: 'Hulu',
+    cost: 7.99,
+    dueDate: 20,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  },
+  {
+    id: 'sub-disney',
+    name: 'Disney+',
+    cost: 10.99,
+    dueDate: 1,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  },
+  {
+    id: 'sub-spotify',
+    name: 'Spotify Premium',
+    cost: 12.99,
+    dueDate: 5,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  },
+  {
+    id: 'sub-aws',
+    name: 'AWS',
+    cost: 85.50,
+    dueDate: 10,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  },
+];
+
+/**
+ * Seed test subscriptions into localStorage BEFORE page loads components
+ * This ensures SubscriptionContext initializes with data available
+ */
+async function seedSubscriptions(page: Page, subscriptions: typeof TEST_SUBSCRIPTIONS) {
+  await page.addInitScript(
+    (subs) => {
+      window.localStorage.setItem('subscriptions', JSON.stringify(subs));
+    },
+    subscriptions
+  );
+}
 
 /**
  * Parse CSV content and extract data lines
@@ -75,11 +142,15 @@ test('S2.1 | Export with search filter active', async ({ page }) => {
    * 4. Verifies CSV contains only matching subscriptions
    */
 
-  // Setup: Navigate to dashboard
+  // Setup: Seed test subscriptions before navigating
+  await seedSubscriptions(page, TEST_SUBSCRIPTIONS);
+  
+  // Navigate to dashboard
   await page.goto(BASE_URL);
 
-  // Wait for subscriptions to load
+  // Wait for subscriptions to load and render
   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
+  await page.waitForSelector('[data-testid="subscription-item"]', { timeout: 5000 });
 
   // Get initial subscription count (all subscriptions)
   const allSubscriptions = await page.locator('[data-testid="subscription-item"]').count();
@@ -153,11 +224,15 @@ test('S2.2 | Export with cost range filter active', async ({ page }) => {
    * 4. Verifies all CSV rows have costs within range
    */
 
-  // Setup: Navigate to dashboard
+  // Setup: Seed test subscriptions before navigating
+  await seedSubscriptions(page, TEST_SUBSCRIPTIONS);
+  
+  // Navigate to dashboard
   await page.goto(BASE_URL);
 
-  // Wait for subscriptions
+  // Wait for subscriptions to load
   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
+  await page.waitForSelector('[data-testid="subscription-item"]', { timeout: 5000 });
 
   // Get initial subscription count
   const allSubscriptions = await page.locator('[data-testid="subscription-item"]').count();
@@ -233,11 +308,15 @@ test('S2.3 | Export with combined search + filter active', async ({ page }) => {
    * 4. Verifies CSV respects both constraints simultaneously
    */
 
-  // Setup: Navigate to dashboard
+  // Setup: Seed test subscriptions before navigating
+  await seedSubscriptions(page, TEST_SUBSCRIPTIONS);
+  
+  // Navigate to dashboard
   await page.goto(BASE_URL);
 
   // Wait for subscriptions
   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
+  await page.waitForSelector('[data-testid="subscription-item"]', { timeout: 5000 });
 
   // Get initial count
   const allSubscriptions = await page.locator('[data-testid="subscription-item"]').count();
@@ -328,11 +407,15 @@ test('S2.4 | Export with no matches shows friendly message', async ({ page }) =>
    * 3. Verifies export button is disabled or shows error
    */
 
-  // Setup: Navigate to dashboard
+  // Setup: Seed test subscriptions before navigating
+  await seedSubscriptions(page, TEST_SUBSCRIPTIONS);
+  
+  // Navigate to dashboard
   await page.goto(BASE_URL);
 
   // Wait for subscriptions
   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
+  await page.waitForSelector('[data-testid="subscription-item"]', { timeout: 5000 });
 
   // Action: Apply search that matches nothing
   const searchInput = page.locator('input#searchbar-input');
@@ -388,11 +471,25 @@ test('S2.10 | Performance baseline: export 500+ filtered rows in <2 seconds', as
    * 4. Documents baseline performance metrics
    */
 
-  // Setup: Navigate to dashboard
+  // Generate 500+ test subscriptions for performance testing
+  const largeDataset = Array.from({ length: 550 }, (_, i) => ({
+    id: `sub-${i}`,
+    name: `Subscription ${i}`,
+    cost: Math.random() * 100,
+    dueDate: (i % 31) + 1,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  }));
+
+  // Setup: Seed large dataset before navigating
+  await seedSubscriptions(page, largeDataset);
+  
+  // Navigate to dashboard
   await page.goto(BASE_URL);
 
   // Wait for subscriptions
   await page.waitForSelector('[data-testid="subscription-list"]', { timeout: 5000 });
+  await page.waitForSelector('[data-testid="subscription-item"]', { timeout: 5000 });
 
   // Verify we have enough subscriptions to test with
   const subscriptionCount = await page.locator('[data-testid="subscription-item"]').count();
